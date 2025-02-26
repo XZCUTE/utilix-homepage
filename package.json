@@ -1,0 +1,13 @@
+{
+    "name": "simple-apps",
+    "version": "1.0.0",
+    "description": "A basic UI clone of athina.ai",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "serve": "vite preview"
+    },
+    "devDependencies": {
+      "vite": "^4.0.0"
+    }
+  }

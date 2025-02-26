@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utilix</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: rgba(33, 33, 33, 0.95);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      padding: 1rem 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+      padding: 0.5rem 0;
+      background-color: rgba(33, 33, 33, 0.98);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #fff, #ddd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      background-color: #1e1e1e;
+      padding: 8rem 2rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      background: linear-gradient(45deg, #fff, #ddd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2.5rem;
+      color: #ddd;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+
+    .hero button {
+      background-color: #fff;
+      color: #000;
+      padding: 1rem 2.5rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      background-color: #f8f8f8;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+
+    .feature-card {
+      background-color: #212121;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      text-align: left;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: inherit;
+      opacity: 0.8;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .feature-card p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .no-link-style {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .yellow { background-color: #f0db4f; color: #000; }
+    .green { background-color: #90ee90; color: #000; }
+    .blue { background-color: #add8e6; color: #000; }
+    .pink { background-color: #ffb6c1; color: #000; }
+    .purple { background-color: #e49191; color: #000; }
+    .orange { background-color: #ffb834; color: #000; }
+
+    .services {
+      padding: 6rem 2rem;
+      text-align: center;
+      background-color: #1e1e1e;
+      position: relative;
+    }
+
+    .services::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+    }
+
+    .services h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .services p {
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      color: #ddd;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background-color: #212121;
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: left;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .service-card h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background-color: #90ee90;
+      transition: width 0.3s ease;
+    }
+
+    .service-card:hover h3::after {
+      width: 100px;
+    }
+
+    .service-card ul {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .service-card ul li {
+      margin-bottom: 1rem;
+      position: relative;
+      padding-left: 1.5rem;
+      color: #ddd;
+    }
+
+    .service-card ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #90ee90;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover ul li::before {
+      transform: translateX(5px);
+    }
+
+    .service-card button {
+      background-color: transparent;
+      color: #fff;
+      padding: 1rem 2rem;
+      border: 2px solid #90ee90;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .service-card button:hover {
+      background-color: #90ee90;
+      color: #000;
+    }
+
+    .team {
+      padding: 6rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .team h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .team p {
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      color: #ddd;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .team-carousel {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: none;
+          padding-bottom: 1rem;
+          margin: 0 -2rem;
+          scrollbar-width: none; /* Hide the scrollbar */
+          outline: none; /* Remove focus outline */
+          cursor: grab;
+    }
+
+    .team-carousel::-webkit-scrollbar {
+        display: none; /* Hide the scrollbar for Chrome, Safari and Opera */
+    }
+
+    .team-member {
+      flex: 0 0 280px;
+      background-color: #212121;
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      scroll-snap-align: start;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .team-member:hover {
+      transform: translateY(-8px);
+    }
+
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      border: 4px solid rgba(255,255,255,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .team-member:hover img {
+      transform: scale(1.1);
+    }
+
+    .team-member h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .team-member p {
+      font-size: 1rem;
+      color: #ddd;
+      margin-bottom: 0;
+    }
+
+    .trello {
+      padding: 4rem 2rem;
+      text-align: center;
+      background-color: #1e1e1e;
+      position: relative;
+    }
+
+    .trello h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .trello p {
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      color: #ddd;
+    }
+
+    .trello-controls {
+      display: flex;
+      justify-content: flex-end; /* Align buttons to the right */
+      margin-bottom: 1rem;
+    }
+
+    .trello-control {
+      background-color: rgba(255,255,255,0.1);
+      color: #fff;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .trello-control:hover {
+      background-color: rgba(255,255,255,0.2);
+      transform: scale(1.1);
+    }
+
+    .trello-carousel {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: none;
+          padding-bottom: 1rem;
+          margin: 0 -2rem;
+          scrollbar-width: none; /* Hide the scrollbar */
+          outline: none; /* Remove focus outline */
+          cursor: grab;
+    }
+
+    .trello-card {
+      flex: 0 0 300px;
+      background-color: #212121;
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: left;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trello-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .trello-card-header {
+      height: 6px;
+      border-radius: 3px;
+      margin-bottom: 1.5rem;
+    }
+
+    .trello-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .trello-card p {
+      font-size: 1rem;
+      color: #ddd;
+      margin-bottom: 0;
+    }
+
+    footer {
+      background-color: #000;
+      color: #fff;
+      padding: 4rem 2rem;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .footer-column h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-column ul li a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-column ul li a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Utilix</div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Simple Apps</h1>
+    <p>A developer named Mark Joshua Kylee P. Sta. Rosa created this project to showcase his skills in web development. This project includes a variety of simple apps that demonstrate his ability to create functional and user-friendly applications.</p>
+    <button>Portfolio</button>
+  </section>
+
+  <section class="features">
+    <div class="feature-card yellow">
+      <a href="https://utilix-weatherapp.pages.dev/" target="_blank" class="no-link-style">
+        <h3>Utilix Weather App</h3>
+        <p>Stay ahead of the forecast with real-time updates, detailed radar maps, and personalized alerts that help you plan your day effortlessly.</p>
+      </a>
+    </div>
+    <div class="feature-card green">
+      <a href="https://xzcute.github.io/Utilix-MapdestinationApp/" target="_blank" class="no-link-style"></a>
+      <h3>Utilix TaskMaster</h3>
+      <p>Manage tasks, set reminders, and stay organized effortlessly with this all-in-one productivity assistant.</p>
+    </div>
+    <div class="feature-card blue">
+      
+      <h3>Utilix Map App</h3>
+      <p>Navigate with confidence using interactive maps, live traffic updates, and intuitive directions for smooth journeys every time.</p>
+    </div>
+    <div class="feature-card pink">
+      <h3>Utilix Games</h3>
+      <p>Dive into a curated collection of engaging games that entertain, challenge, and keep you coming back for more fun.</p>
+    </div>
+    <div class="feature-card orange">
+      <h3>Utilix Learn Coding</h3>
+      <p>Boost your tech skills with interactive lessons, hands-on projects, and real-world coding challenges designed for beginners and pros alike.</p>
+    </div>
+    <div class="feature-card purple">
+      <h3>Utilix AI</h3>
+      <p>Unlock the power of artificial intelligence with smart tools that automate tasks, deliver actionable insights, and drive innovation.</p>
+    </div>
+  </section>
+
+  <section class="services">
+    <h2>Our Services</h2>
+    <p>Comprehensive solutions for your digital needs</p>
+    <div class="services-grid">
+      <div class="service-card basic">
+        <h3>Creative Services</h3>
+        <ul>
+          <li>Website Creation</li>
+          <li>App Development</li>
+          <li>Excel File Systems</li>
+          <li>Video & Image Editing</li>
+          <li>UI/UX Design</li>
+        </ul>
+        <button>Learn More</button>
+      </div>
+      <div class="service-card pro">
+        <h3>Data & Tech</h3>
+        <ul>
+          <li>Presentation Design</li>
+          <li>Data Analysis & Reporting</li>
+          <li>Data Collection & Validation</li>
+          <li>Automation & Custom Scripts</li>
+          <li>Database Management</li>
+        </ul>
+        <button>Learn More</button>
+      </div>
+      <div class="service-card premium">
+        <h3>Advanced Solutions</h3>
+        <ul>
+          <li>Business Intelligence & Dashboards</li>
+          <li>Translation Services</li>
+          <li>Remote Support & Computer Fix</li>
+          <li>Cloud Solutions</li>
+          <li>Security Consulting</li>
+        </ul>
+        <button>Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="team">
+    <h2>Meet our beautiful team</h2>
+    <p>Our philosophy is simple: hire great people and give them the resources and support to do their best work.</p>
+    <div class="team-carousel">
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Camilla Wilson">
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Payment Gateway Support</p>
+      </div>
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Olive Nacelle">
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>VP of Customer Success</p>
+      </div>
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Sophie Chamberlaine">
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Specialized Support</p>
+      </div>
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="Jessica Dobrev">
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Payments Support</p>
+      </div>
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Orlando Diggs">
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Customer Success Lead</p>
+      </div>
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Liam Johnson">
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Technical Support</p>
+      </div>
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Noah Brown">
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Sales Manager</p>
+      </div>
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Ethan Davis">
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Marketing Specialist</p>
+      </div>
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Isabella Rodriguez">
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Customer Relations</p>
+      </div>
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Michael Garcia">
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Support Engineer</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="trello">
+    <h2>Trello in action</h2>
+    <p>Workflows for any project, big or small</p>
+    <div class="trello-controls">
+      <button class="trello-control prev">‹</button>
+      <button class="trello-control next">›</button>
+    </div>
+    <div class="trello-carousel-container">
+      <div class="trello-carousel">
+        <div class="trello-card">
+          <div class="trello-card-header" style="background-color: #f44336;"></div>
+          <h3>Project management</h3>
+          <p>Keep tasks in order, deadlines on track, and team members aligned with Trello.</p>
+        </div>
+        <div class="trello-card">
+          <div class="trello-card-header" style="background-color: #2196f3;"></div>
+          <h3>Meetings</h3>
+          <p>Empower your team meetings to be more productive, empowering, and dare we say—fun.</p>
+        </div>
+        <div class="trello-card">
+          <div class="trello-card-header" style="background-color: #4caf50;"></div>
+          <h3>Onboarding</h3>
+          <p>Onboarding to a new company or project is a snap with Trello's visual layout of to-do's, resources, and progress tracking.</p>
+        </div>
+        <div class="trello-card">
+          <div class="trello-card-header" style="background-color: #ffeb3b;"></div>
+          <h3>Task management</h3>
+          <p>Use Trello to track, manage, complete, and bring tasks together like the pieces of a puzzle, and make your team's projects a cohesive success every time.</p>
+        </div>
+        <div class="trello-card">
+          <div class="trello-card-header" style="background-color: #00bcd4;"></div>
+          <h3>Brainstorming</h3>
+          <p>Unleash your team's creativity and keep ideas visible, collaborative, and actionable.</p>
+        </div>
+        <div class="trello-card">
+          <div class="trello-card-header" style="background-color: #e91e63;"></div>
+          <h3>Resource hub</h3>
+          <p>Save time with a well-designed hub that helps teams find information easily and quickly.</p>
+        </div>
+      </div>
+    </div>
+    <p>No need to start from scratch. Jump-start your workflow with a proven playbook designed for different teams. Customize it to make it yours.</p>
+    <button>Explore All Use Cases</button>
+  </section>
+
+  <footer>
+    <p>©2025 Utilix</p>
+    <div class="footer-links">
+      <div class="footer-column">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#">Observe</a></li>
+          <li><a href="#">Flows</a></li>
+          <li><a href="#">Develop</a></li>
+          <li><a href="#">Evaluate</a></li>
+          <li><a href="#">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">AI Hub</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Crunchbase</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Team Carousel Infinite Scroll
+    const teamCarousel = document.querySelector('.team-carousel');
+    const teamMembers = document.querySelectorAll('.team-member');
+    const teamMemberWidth = teamMembers[0].offsetWidth + 32; // Including 2rem gap
+
+    // Clone elements for infinite effect
+    const totalWidth = teamMembers.length * teamMemberWidth;
+    teamCarousel.style.width = `${totalWidth * 3}px`; // Triple for smooth looping
+    teamCarousel.innerHTML += teamCarousel.innerHTML + teamCarousel.innerHTML; // Duplicate content twice
+
+    let scrollPosition = totalWidth; // Start in the middle set
+    teamCarousel.scrollLeft = scrollPosition;
+
+    // Smooth scroll function
+    function smoothScroll(target) {
+      teamCarousel.scrollTo({
+        left: target,
+        behavior: 'smooth'
+      });
+    }
+
+    // Infinite scroll logic
+    function checkBoundaries() {
+      if (teamCarousel.scrollLeft <= 0) {
+        teamCarousel.scrollLeft = totalWidth;
+        scrollPosition = totalWidth;
+      } else if (teamCarousel.scrollLeft >= totalWidth * 2) {
+        teamCarousel.scrollLeft = totalWidth;
+        scrollPosition = totalWidth;
+      }
+    }
+
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        scrollPosition -= teamMemberWidth;
+        smoothScroll(scrollPosition);
+      } else if (e.key === 'ArrowRight') {
+        scrollPosition += teamMemberWidth;
+        smoothScroll(scrollPosition);
+      }
+      setTimeout(checkBoundaries, 500); // Check after animation
+    });
+
+    // Auto-scroll every 3 seconds
+    let autoScroll = setInterval(() => {
+      scrollPosition += teamMemberWidth;
+      smoothScroll(scrollPosition);
+      checkBoundaries();
+    }, 3000);
+
+    // Pause on hover
+    teamCarousel.addEventListener('mouseenter', () => clearInterval(autoScroll));
+    teamCarousel.addEventListener('mouseleave', () => {
+      autoScroll = setInterval(() => {
+        scrollPosition += teamMemberWidth;
+        smoothScroll(scrollPosition);
+        checkBoundaries();
+      }, 3000);
+    });
+
+    // Trello Carousel Controls
+    const trelloCarousel = document.querySelector('.trello-carousel');
+    const trelloCards = document.querySelectorAll('.trello-card');
+    const trelloCardWidth = trelloCards[0].offsetWidth + 32; // Including 2rem gap
+    const prevButton = document.querySelector('.trello-control.prev');
+    const nextButton = document.querySelector('.trello-control.next');
+    let trelloPosition = 0;
+
+    // Trello scroll function
+    function trelloScroll(target) {
+      trelloCarousel.scrollTo({
+        left: target,
+        behavior: 'smooth'
+      });
+    }
+
+    // Button controls for Trello
+    prevButton.addEventListener('click', () => {
+      trelloPosition -= trelloCardWidth;
+      if (trelloPosition < 0) {
+        trelloPosition = (trelloCards.length - 1) * trelloCardWidth;
+      }
+      trelloScroll(trelloPosition);
+    });
+
+    nextButton.addEventListener('click', () => {
+      trelloPosition += trelloCardWidth;
+      if (trelloPosition >= trelloCards.length * trelloCardWidth) {
+        trelloPosition = 0;
+      }
+      trelloScroll(trelloPosition);
+    });
+
+    // Dynamically add CSS to ensure proper display
+    const style = document.createElement('style');
+    style.textContent = `
+      .team-carousel {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        display: flex;
+        width: 100%;
+      }
+      .team-member {
+        scroll-snap-align: start;
+      }
+      .trello-carousel {
+        overflow-x: hidden;
+        scroll-snap-type: x mandatory;
+        display: flex;
+        width: 100%;
+      }
+      .trello-card {
+        scroll-snap-align: start;
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
