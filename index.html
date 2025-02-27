@@ -1,853 +1,1351 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Utilix</title>
-      <style>
-        body {
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          margin: 0;
-          padding: 0;
-          background-color: #121212;
-          color: #fff;
-        }
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utilix</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-        header {
-          background-color: #212121;
-          color: #fff;
-          padding: 1rem 0;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          position: sticky;
-          top: 0;
-          z-index: 100;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        nav {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 2rem;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #fff;
+      line-height: 1.6;
+    }
 
-        .logo {
-          font-size: 2rem;
-          font-weight: bold;
-        }
+    @keyframes progressGlow {
+      0% { box-shadow: 0 0 5px rgba(144, 238, 144, 0.5); }
+      50% { box-shadow: 0 0 10px rgba(144, 238, 144, 0.7); }
+      100% { box-shadow: 0 0 5px rgba(144, 238, 144, 0.5); }
+    }
 
-        nav ul {
-          list-style: none;
-          display: flex;
-        }
+    @keyframes progressGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-        nav ul li {
-          margin-left: 2rem;
-        }
+    @keyframes progressShine {
+      0% { background-image: linear-gradient(90deg, #90ee90, #add8e6, #90ee90); }
+      50% { background-image: linear-gradient(90deg, #add8e6, #90ee90, #add8e6); }
+      100% { background-image: linear-gradient(90deg, #90ee90, #add8e6, #90ee90); }
+    }
 
-        nav ul li a {
-          color: #fff;
-          text-decoration: none;
-          transition: color 0.3s ease;
-        }
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #90ee90, #add8e6, #90ee90);
+      background-size: 200% 100%;
+      z-index: 1001;
+      transition: width 0.1s ease, height 0.2s ease;
+      animation: 
+        progressGlow 3s ease-in-out infinite,
+        progressGradient 4s ease infinite,
+        progressShine 8s linear infinite;
+      will-change: transform, width, background-image;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      perspective: 1000;
+      border-radius: 0 3px 3px 0;
+    }
 
-        nav ul li a:hover {
-          color: #ddd;
-        }
+    .scroll-progress::after {
+      content: attr(data-progress);
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background: linear-gradient(135deg, rgba(33, 33, 33, 0.95), rgba(51, 51, 51, 0.95));
+      color: white;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      border-radius: 4px;
+      font-size: 12px;
+      opacity: 0;
+      transform: translateY(-10px) scale(0.95);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(5px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+      transform-origin: top right;
+    }
 
-        .hero {
-          background-color: #1e1e1e;
-          padding: 4rem 2rem;
-          text-align: center;
-        }
+    .scroll-progress:hover {
+      height: 5px;
+      cursor: pointer;
+    }
 
-        .hero h1 {
-          font-size: 2.5rem;
-          margin-bottom: 1rem;
-        }
+    .scroll-progress:hover::after {
+      opacity: 1;
+      transform: translateY(5px) scale(1);
+    }
 
-        .hero p {
-          font-size: 1.2rem;
-          margin-bottom: 2rem;
-          color: #ddd;
-        }
+    header {
+      background-color: rgba(33, 33, 33, 0.95);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      padding: 1rem 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
 
-        .hero button {
-          background-color: #fff;
-          color: #000;
-          padding: 1rem 2rem;
-          border: none;
-          cursor: pointer;
-          border-radius: 5px;
-          transition: background-color 0.3s ease, color 0.3s ease;
-        }
+    header.scrolled {
+      padding: 0.5rem 0;
+      background-color: rgba(33, 33, 33, 0.98);
+    }
 
-        .hero button:hover {
-          background-color: #ddd;
-          color: #000;
-        }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-        .features {
-          display: flex;
-          justify-content: space-around;
-          flex-wrap: wrap;
-          max-width: 1200px;
-          margin: 2rem auto;
-          padding: 0 2rem;
-        }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
 
-        .feature-card {
-          background-color: #212121;
-          padding: 1.5rem;
-          border-radius: 10px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-          text-align: left;
-          width: 300px;
-          margin-bottom: 20px;
-          position: relative;
-          transition: transform 0.3s ease;
-        }
+    .logo i {
+      color: #90ee90;
+      font-size: 1.8rem;
+      transition: transform 0.3s ease;
+    }
 
-        .feature-card:hover {
-          transform: translateY(-5px);
-        }
+    .logo span {
+      background: linear-gradient(45deg, #fff, #ddd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .feature-card h3 {
-          margin-bottom: 1rem;
-        }
+    .logo:hover i {
+      transform: rotate(20deg);
+    }
 
-        footer {
-          text-align: left;
-          padding: 2rem;
-          background-color: #000;
-          color: #fff;
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-        }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
 
-        footer .footer-links {
-          display: flex;
-          justify-content: space-around;
-          width: 70%;
-        }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+    }
 
-        footer .footer-column {
-          width: 25%;
-        }
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s ease;
+    }
 
-        footer h4 {
-          margin-bottom: 1rem;
-          color: #ddd;
-        }
+    nav ul li a:hover::after {
+      width: 100%;
+    }
 
-        footer ul {
-          list-style: none;
-          padding: 0;
-        }
+    .hero {
+      background-color: #1e1e1e;
+      padding: 8rem 2rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-        footer ul li {
-          margin-bottom: 0.5rem;
-        }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+    }
 
-        footer ul li a {
-          color: #aaa;
-          text-decoration: none;
-          transition: color 0.3s ease;
-        }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      background: linear-gradient(45deg, #fff, #ddd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        footer ul li a:hover {
-          color: #fff;
-        }
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2.5rem;
+      color: #ddd;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
 
-        .yellow {
-          background-color: #f0db4f;
-          color: #000;
-        }
+    .hero button {
+      background-color: #fff;
+      color: #000;
+      padding: 1rem 2.5rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .green {
-          background-color: #90ee90;
-          color: #000;
-        }
+    .hero button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      background-color: #f8f8f8;
+    }
 
-        .blue {
-          background-color: #add8e6;
-          color: #000;
-        }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
 
-        .pink {
-          background-color: #ffb6c1;
-          color: #000;
-        }
+    .feature-card {
+      background-color: #212121;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      text-align: left;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
 
-        .purple {
-          background-color: #e49191;
-          color: #000;
-        }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: inherit;
+      opacity: 0.8;
+    }
 
-        .orange {
-          background-color: #ffb834;
-          color: #000;
-        }
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
 
-        /* Services Section */
-        .services {
-          padding: 4rem 2rem;
-          text-align: center;
-          background-color: #1e1e1e;
-        }
-        
-        .services h2 {
-          font-size: 2.5rem;
-          margin-bottom: 1rem;
-          color: #fff;
-        }
-        
-        .services p {
-          font-size: 1.2rem;
-          margin-bottom: 2rem;
-          color: #ddd;
-        }
-        
-        .services-grid {
-          display: flex;
-          justify-content: space-around;
-          flex-wrap: wrap;
-          max-width: 1200px;
-          margin: 2rem auto;
-          gap: 2rem;
-        }
-        
-        .service-card {
-          background-color: #212121;
-          border-radius: 10px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-          text-align: left;
-          width: 300px;
-          padding: 2rem;
-          transition: transform 0.3s ease;
-        }
-        
-        .service-card:hover {
-          transform: translateY(-5px);
-        }
-        
-        .service-card h3 {
-          margin-bottom: 1.5rem;
-          color: #fff;
-          font-size: 1.5rem;
-          position: relative;
-          padding-bottom: 0.5rem;
-        }
-        
-        .service-card h3::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          width: 50px;
-          height: 3px;
-          background-color: #90ee90;
-        }
-        
-        .service-card ul {
-          list-style: none;
-          padding: 0;
-          margin-bottom: 1.5rem;
-        }
-        
-        .service-card ul li {
-          margin-bottom: 1rem;
-          position: relative;
-          padding-left: 1.5rem;
-          color: #ddd;
-        }
-        
-        .service-card ul li:before {
-          content: '→';
-          position: absolute;
-          left: 0;
-          color: #90ee90;
-        }
-        
-        .service-card button {
-          background-color: transparent;
-          color: #fff;
-          padding: 0.75rem 1.5rem;
-          border: 2px solid #90ee90;
-          cursor: pointer;
-          border-radius: 5px;
-          transition: all 0.3s ease;
-          width: 100%;
-        }
-        
-        .service-card button:hover {
-          background-color: #90ee90;
-          color: #000;
-        }
-        
-        .service-card.basic {
-          background-color: #333;
-        }
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
 
-        .service-card.pro {
-          background-color: #333;
-        }
-        
-        .service-card.premium {
-          background-color: #333;
-        }
-        
-        @media (max-width: 768px) {
-          .services-grid {
-            flex-direction: column;
-            align-items: center;
-          }
-          
-          .service-card {
-            width: 100%;
-            max-width: 300px;
-          }
-        }
+    .feature-card p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
 
-        /* Team Section */
-        .team {
-          padding: 4rem 2rem;
-          text-align: center;
-        }
+    .no-link-style {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
 
-        .team h2 {
-          font-size: 2.5rem;
-          margin-bottom: 1rem;
-        }
+    /* Feature Card Styles */
+    .feature-card-weather { background-color: #f0db4f; }
+    .feature-card-task { background-color: #90ee90; }
+    .feature-card-map { background-color: #add8e6; }
+    .feature-card-games { background-color: #ffb6c1; }
+    .feature-card-learn { background-color: #ffb834; }
+    .feature-card-ai { background-color: #e49191; }
+    .feature-card-cinema { background-color: #ff6b6b; }
+    .feature-card-library { background-color: #4ecdc4; }
 
-        .team p {
-          font-size: 1.2rem;
-          margin-bottom: 2rem;
-          color: #ddd;
-        }
+    .feature-card {
+      position: relative;
+      overflow: hidden;
+      color: #1a1a1a;
+      font-weight: 500;
+    }
 
-        .team-carousel {
-          display: flex;
-          overflow-x: auto;
-          scroll-snap-type: none;
-          padding-bottom: 1rem;
-          margin: 0 -2rem;
-          scrollbar-width: none; /* Hide the scrollbar */
-          outline: none; /* Remove focus outline */
-          cursor: grab;
-        }
+    .feature-card, .feature-card::before, .feature-card h3, .feature-card p {
+      transition: all 0.3s ease;
+    }
 
-        .team-carousel::-webkit-scrollbar {
-          display: none; /* Hide the scrollbar for Chrome, Safari and Opera */
-        }
+    .feature-card h3 {
+      position: relative;
+      z-index: 1;
+      color: #000;
+      font-weight: 700;
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+    }
 
-        .team-member {
-          flex: 0 0 auto;
-          width: 250px;
-          margin: 0 1rem;
-          border-radius: 10px;
-          background-color: #212121;
-          padding: 1rem;
-          text-align: center;
-          scroll-snap-align: start;
-          transition: transform 0.3s ease;
-        }
+    .feature-card p {
+      position: relative;
+      z-index: 1;
+      color: #1a1a1a;
+      opacity: 0.9;
+    }
 
-        .team-member:hover {
-          transform: translateY(-5px);
-        }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+    }
 
-        .team-member img {
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          object-fit: cover;
-          margin-bottom: 1rem;
-        }
+    .feature-card {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transform: translateY(0) scale(1);
+      will-change: transform, box-shadow;
+    }
 
-        /* Trello Section */
-        .trello {
-          padding: 4rem 2rem;
-          text-align: center;
-        }
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
 
-        .trello h2 {
-          font-size: 2.5rem;
-          margin-bottom: 1rem;
-        }
+    .feature-card:hover::before {
+      opacity: 1;
+    }
 
-        .trello p {
-          font-size: 1.2rem;
-          margin-bottom: 2rem;
-          color: #ddd;
-        }
+    .feature-card:hover h3 {
+      transform: translateY(-2px);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(45deg, #000, #333);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .trello-controls {
-          display: flex;
-          justify-content: flex-end; /* Align buttons to the right */
-          margin-bottom: 1rem;
-        }
+    .feature-card:hover p {
+      opacity: 1;
+      transform: translateY(2px);
+      color: #000;
+    }
 
-        .trello-carousel-container {
-          position: relative;
-        }
+    .services {
+      padding: 6rem 2rem;
+      text-align: center;
+      background-color: #1e1e1e;
+      position: relative;
+    }
 
-        .trello-carousel {
-          display: flex;
-          overflow-x: auto;
-          scroll-snap-type: none;
-          padding-bottom: 1rem;
-          margin: 0 -2rem;
-          scrollbar-width: none; /* Hide the scrollbar */
-          outline: none; /* Remove focus outline */
-          cursor: grab;
-        }
+    .services::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+    }
 
-        .trello-carousel::-webkit-scrollbar {
-          display: none; /* Hide the scrollbar for Chrome, Safari and Opera */
-        }
+    .services h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
 
-        .trello-card {
-          flex: 0 0 auto;
-          width: 300px;
-          margin: 0 1rem;
-          border-radius: 10px;
-          background-color: #212121;
-          padding: 1rem;
-          text-align: left;
-          scroll-snap-align: start;
-        }
+    .services p {
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      color: #ddd;
+    }
 
-        .trello-card-header {
-          height: 5px;
-          border-radius: 5px 5px 0 0;
-          margin-bottom: 1rem;
-        }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-        .trello button {
-          background-color: #fff;
-          color: #000;
-          padding: 0.75rem 1.5rem;
-          border: none;
-          cursor: pointer;
-          border-radius: 5px;
-          transition: background-color 0.3s ease, color 0.3s ease;
-          margin-top: 2rem;
-        }
+    .service-card {
+      background-color: #212121;
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: left;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
 
-        .trello button:hover {
-          background-color: #ddd;
-          color: #000;
-        }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-        .trello-control {
-          background-color: rgba(0, 0, 0, 0.5);
-          color: #fff;
-          border: none;
-          padding: 0.3rem 0.6rem; /* Smaller padding */
-          cursor: pointer;
-          border-radius: 50%;
-          font-size: 1rem; /* Smaller font size */
-          margin: 0 0.3rem; /* Reduced margin */
-        }
+    .service-card:hover {
+      transform: translateY(-8px);
+    }
 
-        .no-link-style {
-          text-decoration: none; /* Remove underline */
-          color: inherit; /* Inherit color from parent */
-        }
-      </style>
-      <script>
-        // Embed package.json
-        const packageJson = {
-          "name": "simple-apps",
-          "version": "1.0.0",
-          "description": "A basic UI clone of athina.ai",
-          "scripts": {
-            "dev": "vite",
-            "build": "vite build",
-            "serve": "vite preview"
-          },
-          "devDependencies": {
-            "vite": "^4.0.0"
-          }
-        };
+    .service-card:hover::after {
+      opacity: 1;
+    }
 
-        // Embed package-lock.json
-        const packageLockJson = {
-          "name": "simple-apps",
-          "version": "1.0.0",
-          "lockfileVersion": 3,
-          "requires": true,
-          "packages": {
-            "": {
-              "name": "simple-apps",
-              "version": "1.0.0",
-              "devDependencies": {
-                "vite": "^4.0.0"
-              }
-            },
-            // ... (other dependencies from package-lock.json)
-          }
-        };
-      </script>
-    </head>
-    <body>
-      <header>
-        <nav>
-          <div class="logo">Utilix</div>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </nav>
-      </header>
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      position: relative;
+      padding-bottom: 1rem;
+    }
 
-      <section class="hero">
-        <h1>Simple Apps</h1>
-        <p>A developer named Mark Joshua Kylee P. Sta. Rosa created this project to showcase his skills in web development. This project includes a variety of simple apps that demonstrate his ability to create functional and user-friendly applications.</p>
-        <button>Portfolio</button>
-      </section>
+    .service-card h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background-color: #90ee90;
+      transition: width 0.3s ease;
+    }
 
-      <section class="features">
-        <div class="feature-card yellow">
-          <a href="https://utilix-weatherapp.pages.dev/" target="_blank" class="no-link-style">
-          <h3>Utilix Weather App</h3>
-          <p>Stay ahead of the forecast with real-time updates, detailed radar maps, and personalized alerts that help you plan your day effortlessly.</p>
-          </a>
-        </div>
-        <div class="feature-card green">
-          <h3>Utilix TaskMaster</h3>
-          <a href="https://utilix-taskmasterapp.pages.dev/" target="_blank" class="no-link-style">
-          <p>Manage tasks, set reminders, and stay organized effortlessly with this all-in-one productivity assistant.</p>
-          </a>
-        </div>
-        <div class="feature-card blue">
-          <a href="https://utilix-mapdestinationapp.pages.dev/" target="_blank" class="no-link-style">
-          <h3>Utilix Map App</h3>
-          <p>Navigate with confidence using interactive maps, live traffic updates, and intuitive directions for smooth journeys every time.</p>
-          </a>
-        </div>
-        <div class="feature-card pink">
-          <h3>Utilix Games</h3>
-          <p>Dive into a curated collection of engaging games that entertain, challenge, and keep you coming back for more fun.</p>
-        </div>
-        <div class="feature-card orange">
-          <h3>Utilix Learn Coding</h3>
-          <a href="https://html-lessons.pages.dev/" target="_blank" class="no-link-style">
-          <p>Boost your tech skills with interactive lessons, hands-on projects, and real-world coding challenges designed for beginners and pros alike.</p>
-          </a>
-        </div>
-        <div class="feature-card purple">
-          <h3>Utilix AI</h3>
-          <p>Unlock the power of artificial intelligence with smart tools that automate tasks, deliver actionable insights, and drive innovation.</p>
-        </div>
-      </section>
+    .service-card:hover h3::after {
+      width: 100px;
+    }
 
-      <section class="services">
-        <h2>Our Services</h2>
-        <p>Comprehensive solutions for your digital needs</p>
-        <div class="services-grid">
-          <div class="service-card basic">
-            <h3>Creative Services</h3>
-            <ul>
-              <li>Website Creation</li>
-              <li>App Development</li>
-              <li>Excel File Systems</li>
-              <li>Video & Image Editing</li>
-              <li>UI/UX Design</li>
-            </ul>
-            <button>Learn More</button>
-          </div>
-          <div class="service-card pro">
-            <h3>Data & Tech</h3>
-            <ul>
-              <li>Presentation Design</li>
-              <li>Data Analysis & Reporting</li>
-              <li>Data Collection & Validation</li>
-              <li>Automation & Custom Scripts</li>
-              <li>Database Management</li>
-            </ul>
-            <button>Learn More</button>
-          </div>
-          <div class="service-card premium">
-            <h3>Advanced Solutions</h3>
-            <ul>
-              <li>Business Intelligence & Dashboards</li>
-              <li>Translation Services</li>
-              <li>Remote Support & Computer Fix</li>
-              <li>Cloud Solutions</li>
-              <li>Security Consulting</li>
-            </ul>
-            <button>Learn More</button>
-          </div>
-        </div>
-      </section>
+    .service-card ul {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
 
-      <section class="team">
-        <h2>Meet our beautiful team</h2>
-        <p>Our philosophy is simple: hire great people and give them the resources and support to do their best work.</p>
-        <div class="team-carousel">
-          <div class="team-member">
-            <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Camilla Wilson">
-            <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-            <p>Payment Gateway Support</p>
-          </div>
-          <div class="team-member">
-            <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Olive Nacelle">
-            <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-            <p>VP of Customer Success</p>
-          </div>
-          <div class="team-member">
-            <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Sophie Chamberlaine">
-            <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-            <p>Specialized Support</p>
-          </div>
-          <div class="team-member">
-            <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="Jessica Dobrev">
-            <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-            <p>Payments Support</p>
-          </div>
-          <div class="team-member">
-            <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Orlando Diggs">
-            <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-            <p>Customer Success Lead</p>
-          </div>
-          <div class="team-member">
-            <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Liam Johnson">
-            <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-            <p>Technical Support</p>
-          </div>
-          <div class="team-member">
-            <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Noah Brown">
-            <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-            <p>Sales Manager</p>
-          </div>
-          <div class="team-member">
-            <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Ethan Davis">
-            <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-            <p>Marketing Specialist</p>
-          </div>
-          <div class="team-member">
-            <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Isabella Rodriguez">
-            <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-            <p>Customer Relations</p>
-          </div>
-          <div class="team-member">
-            <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Michael Garcia">
-            <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-            <p>Support Engineer</p>
-          </div>
-        </div>
-      </section>
+    .service-card ul li {
+      margin-bottom: 1rem;
+      position: relative;
+      padding-left: 1.5rem;
+      color: #ddd;
+    }
 
-       <section class="trello">
-        <h2>ACTIONS</h2>
-        <p>Workflows for any project, big or small</p>
-        <div class="trello-controls">
-          <button class="trello-control prev">&#x2039;</button>
-          <button class="trello-control next">&#x203A;</button>
-        </div>
-        <div class="trello-carousel-container">
-          <div class="trello-carousel">
-            <div class="trello-card">
-              <div class="trello-card-header" style="background-color: #f44336;"></div>
-              <h3>Project management</h3>
-              <p>Keep tasks in order, deadlines on track, and team members aligned with Trello.</p>
-            </div>
-            <div class="trello-card">
-              <div class="trello-card-header" style="background-color: #2196f3;"></div>
-              <h3>Meetings</h3>
-              <p>Empower your team meetings to be more productive, empowering, and dare we say—fun.</p>
-            </div>
-            <div class="trello-card">
-              <div class="trello-card-header" style="background-color: #4caf50;"></div>
-              <h3>Onboarding</h3>
-              <p>Onboarding to a new company or project is a snap with Trello's visual layout of to-do's, resources, and progress tracking.</p>
-            </div>
-            <div class="trello-card">
-              <div class="trello-card-header" style="background-color: #ffeb3b;"></div>
-              <h3>Task management</h3>
-              <p>Use Trello to track, manage, complete, and bring tasks together like the pieces of a puzzle, and make your team's projects a cohesive success every time.</p>
-            </div>
-            <div class="trello-card">
-              <div class="trello-card-header" style="background-color: #00bcd4;"></div>
-              <h3>Brainstorming</h3>
-              <p>Unleash your team's creativity and keep ideas visible, collaborative, and actionable.</p>
-            </div>
-            <div class="trello-card">
-              <div class="trello-card-header" style="background-color: #e91e63;"></div>
-              <h3>Resource hub</h3>
-              <p>Save time with a well-designed hub that helps teams find information easily and quickly.</p>
-            </div>
-          </div>
-        </div>
-        <p>No need to start from scratch. Jump-start your workflow with a proven playbook designed for different teams. Customize it to make it yours.</p>
-        <button>Explore All Use Cases</button>
-      </section>
+    .service-card ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #90ee90;
+      transition: transform 0.3s ease;
+    }
 
-      <footer>
-        <p>&copy;2025 Utilix</p>
-        <div class="footer-links">
-          <div class="footer-column">
-            <h4>Product</h4>
-            <ul>
-              <li><a href="#">Observe</a></li>
-              <li><a href="#">Flows</a></li>
-              <li><a href="#">Develop</a></li>
-              <li><a href="#">Evaluate</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h4>Resources</h4>
-            <ul>
-              <li><a href="#">Docs</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">AI Hub</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h4>Links</h4>
-            <ul>
-              <li><a href="#">GitHub</a></li>
-              <li><a href="#">LinkedIn</a></li>
-              <li><a href="#">Crunchbase</a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
-    </boddy>
+    .service-card:hover ul li::before {
+      transform: translateX(5px);
+    }
+
+    .service-card button {
+      background-color: transparent;
+      color: #fff;
+      padding: 1rem 2rem;
+      border: 2px solid #90ee90;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .service-card button:hover {
+      background-color: #90ee90;
+      color: #000;
+    }
+
+    .team {
+      padding: 6rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    @keyframes headerReveal {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .team-header {
+      max-width: 800px;
+      margin: 0 auto 4rem;
+      padding: 2rem;
+      background: rgba(33, 33, 33, 0.8);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      animation: headerReveal 0.8s ease-out forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: translateX(-100%);
+      animation: headerShine 3s ease-in-out infinite;
+    }
+
+    @keyframes headerShine {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .team-header h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      background: linear-gradient(45deg, #fff, #ddd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .team-header p {
+      font-size: 1.2rem;
+      color: #ddd;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .team-slider {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      height: 500px;
+      margin: 4rem auto;
+      overflow: hidden;
+      background: rgba(33, 33, 33, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .team-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transform: translateX(100%) scale(0.8);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .team-slide.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      z-index: 2;
+    }
+
+    .team-slide.prev {
+      opacity: 0;
+      transform: translateX(-100%) scale(0.8);
+      z-index: 1;
+    }
+
+    .team-slide.next {
+      opacity: 0;
+      transform: translateX(100%) scale(0.8);
+      z-index: 1;
+    }
+
+    .member-image {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 2rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transform: scale(0.9);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .team-slide.active .member-image {
+      transform: scale(1);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .member-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.8s ease;
+    }
+
+    .team-slide.active .member-image img {
+      transform: scale(1.05);
+    }
+
+    .team-slide h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #fff, #ddd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+    }
+
+    .team-slide.active h3 {
+      opacity: 1;
+      transform: translateY(0);
+      background: linear-gradient(45deg, #fff, #90ee90);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .team-slide p {
+      font-size: 1.2rem;
+      color: #ddd;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+    }
+
+    .team-slide.active p {
+      opacity: 0.9;
+      transform: translateY(0);
+      color: #fff;
+    }
 
 
-<!-- SCRIPTSS -->
- 
-    <script>
-      const teamCarousel = document.querySelector('.team-carousel');
-      const teamMembers = document.querySelectorAll('.team-member');
+    .action-section {
+      padding: 6rem 2rem;
+      text-align: center;
+      background-color: #1e1e1e;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .action-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+    }
+
+    .action-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      background: linear-gradient(45deg, #fff, #ddd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .action-section p {
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      color: #ddd;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .action-controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .action-control {
+      background-color: rgba(255,255,255,0.1);
+      color: #fff;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .action-control:hover {
+      background-color: rgba(255,255,255,0.2);
+      transform: scale(1.1);
+    }
+
+    .action-carousel {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+      padding: 2rem 0;
+    }
+
+    .action-cards {
+      display: flex;
+      transition: transform 0.5s ease;
+      gap: 2rem;
+    }
+
+    .action-card {
+      flex: 0 0 350px;
+      background-color: #212121;
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: left;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .action-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+    }
+
+    .action-card-header {
+      height: 6px;
+      border-radius: 3px;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+
+    .action-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .action-card p {
+      font-size: 1.1rem;
+      color: #ddd;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    .action-section button.explore {
+      background-color: transparent;
+      color: #fff;
+      padding: 1rem 2.5rem;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 3rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .action-section button.explore:hover {
+      background-color: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    footer.secondary {
+      background-color: rgba(33, 33, 33, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 2rem 0;
+    }
+
+    footer .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    footer .flex {
+      display: flex;
+    }
+
+    footer .flex-col {
+      flex-direction: column;
+    }
+
+    footer .justify-between {
+      justify-content: space-between;
+    }
+
+    footer .items-center {
+      align-items: center;
+    }
+
+    footer .space-x-2 > * + * {
+      margin-left: 0.5rem;
+    }
+
+    footer .space-x-6 > * + * {
+      margin-left: 1.5rem;
+    }
+
+    footer .mb-4 {
+      margin-bottom: 1rem;
+    }
+
+    footer .mt-8 {
+      margin-top: 2rem;
+    }
+
+    footer .text-xl {
+      font-size: 1.25rem;
+    }
+
+    footer .font-bold {
+      font-weight: 700;
+    }
+
+    footer .primary {
+      color: #90ee90;
+    }
+
+    footer .hover\:text-primary:hover {
+      color: #90ee90;
+    }
+
+    footer .opacity-80 {
+      opacity: 0.8;
+    }
+
+    footer .transition-colors {
+      transition: color 0.3s ease;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    @media (min-width: 768px) {
+      footer .md\:flex-row {
+        flex-direction: row;
+      }
       
-      teamMembers.forEach((member, index) => {
-        if (index < 5) {
-          const clone = member.cloneNode(true);
-          teamCarousel.appendChild(clone);
+      footer .md\:mb-0 {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress"></div>
+  <header>
+    <nav>
+      <div class="logo">
+        <i class="fas fa-cube"></i>
+        <span>Utilix</span>
+      </div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Services</a></li>
+        <li><a href="#services">Our Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <h1>Utilix Simple Apps</h1>
+    <p>A developer named Mark Joshua Kylee P. Sta. Rosa created this project to showcase his skills in web development. This project includes a variety of simple apps that demonstrate his ability to create functional and user-friendly applications.</p>
+    <button>Portfolio</button>
+  </section>
+
+  <section id="features" class="features">
+    <div class="feature-card feature-card-weather">
+      <a href="https://utilix-weatherapp.pages.dev/" target="_blank" class="no-link-style">
+        <h3>Utilix Weather App</h3>
+        <p>Stay ahead of the forecast with real-time updates, detailed radar maps, and personalized alerts that help you plan your day effortlessly.</p>
+      </a>
+    </div>
+    <div class="feature-card feature-card-task">
+      <a href="https://utilix-taskmasterapp.pages.dev/" target="_blank" class="no-link-style">
+        <h3>Utilix TaskMaster</h3>
+        <p>Manage tasks, set reminders, and stay organized effortlessly with this all-in-one productivity assistant.</p>
+      </a>
+    </div>
+    <div class="feature-card feature-card-map">
+      <a href="https://utilix-mapdestinationapp.pages.dev/" target="_blank" class="no-link-style">
+        <h3>Utilix Map App</h3>
+        <p>Navigate with confidence using interactive maps, live traffic updates, and intuitive directions for smooth journeys every time.</p>
+      </a>
+    </div>
+    <div class="feature-card feature-card-games">
+      <h3>Utilix Games</h3>
+      <p>Dive into a curated collection of engaging games that entertain, challenge, and keep you coming back for more fun.</p>
+    </div>
+    <div class="feature-card feature-card-learn">
+      <a href="https://html-lessons.pages.dev/" target="_blank" class="no-link-style">
+        <h3>Utilix Learn Coding</h3>
+        <p>Boost your tech skills with interactive lessons, hands-on projects, and real-world coding challenges designed for beginners and pros alike.</p>
+      </a>
+    </div>
+    <div class="feature-card feature-card-ai">
+      <h3>Utilix AI</h3>
+      <p>Unlock the power of artificial intelligence with smart tools that automate tasks, deliver actionable insights, and drive innovation.</p>
+    </div>
+    <div class="feature-card feature-card-cinema">
+      <h3>Utilix Cinema</h3>
+      <p>Your ultimate streaming destination. Enjoy unlimited movies and TV shows in HD quality with multiple subtitles, personalized recommendations, and offline viewing. New content added daily!</p>
+    </div>
+    <div class="feature-card feature-card-library">
+      <h3>Utilix Library</h3>
+      <p>Immerse yourself in a vast collection of manga, manhwa, and light novels. Enjoy seamless reading with multiple languages, customizable layouts, and daily updates of your favorite series.</p>
+    </div>
+  </section>
+
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <p>Comprehensive solutions for your digital needs</p>
+    <div class="services-grid">
+      <div class="service-card basic">
+        <h3>Creative Services</h3>
+        <ul>
+          <li>Website Creation</li>
+          <li>App Development</li>
+          <li>Excel File Systems</li>
+          <li>Video & Image Editing</li>
+          <li>UI/UX Design</li>
+        </ul>
+        <button>Learn More</button>
+      </div>
+      <div class="service-card pro">
+        <h3>Data & Tech</h3>
+        <ul>
+          <li>Presentation Design</li>
+          <li>Data Analysis & Reporting</li>
+          <li>Data Collection & Validation</li>
+          <li>Automation & Custom Scripts</li>
+          <li>Database Management</li>
+        </ul>
+        <button>Learn More</button>
+      </div>
+      <div class="service-card premium">
+        <h3>Advanced Solutions</h3>
+        <ul>
+          <li>Business Intelligence & Dashboards</li>
+          <li>Translation Services</li>
+          <li>Remote Support & Computer Fix</li>
+          <li>Cloud Solutions</li>
+          <li>Security Consulting</li>
+        </ul>
+        <button>Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="team">
+    <div class="team-header">
+      <h2>Meet our beautiful team</h2>
+      <p>Our philosophy is simple: hire great people and give them the resources and support to do their best work.</p>
+    </div>
+    <div class="team-slider">
+      <div class="team-slide active">
+        <div class="member-image">
+          <img src="https://scontent.fmnl3-1.fna.fbcdn.net/v/t39.30808-6/456326912_1259499378796217_9169069816291210368_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeE13Xe1UQHjwXtm7EazQbB2kxraQBB63kiTGtpAEHreSAgyifY6p3KlZB2RYg7n5Vumu6PTktlrZFhWmlCWCkm2&_nc_ohc=JbhoRH61_4QQ7kNvgElrLvw&_nc_oc=Adi2YAWUaB6fJC22XQpSP_OaEm48gWUiC38AyHG7N0BVI3JL3y3G2JF2gAdHqAcJLEI&_nc_zt=23&_nc_ht=scontent.fmnl3-1.fna&_nc_gid=Aq5OwIZJLwrg-DHn5d2WACr&oh=00_AYCTcLH5FlmffMBtFrbx3kqyBUre4advpHR-BadqIVC6iA&oe=67C602BF" alt="Mark Joshua">
+        </div>
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Payment Gateway Support</p>
+      </div>
+      <div class="team-slide">
+        <div class="member-image">
+          <img src="https://scontent.fmnl3-1.fna.fbcdn.net/v/t39.30808-6/456326912_1259499378796217_9169069816291210368_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeE13Xe1UQHjwXtm7EazQbB2kxraQBB63kiTGtpAEHreSAgyifY6p3KlZB2RYg7n5Vumu6PTktlrZFhWmlCWCkm2&_nc_ohc=JbhoRH61_4QQ7kNvgElrLvw&_nc_oc=Adi2YAWUaB6fJC22XQpSP_OaEm48gWUiC38AyHG7N0BVI3JL3y3G2JF2gAdHqAcJLEI&_nc_zt=23&_nc_ht=scontent.fmnl3-1.fna&_nc_gid=Aq5OwIZJLwrg-DHn5d2WACr&oh=00_AYCTcLH5FlmffMBtFrbx3kqyBUre4advpHR-BadqIVC6iA&oe=67C602BF" alt="Mark Joshua">
+        </div>
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>VP of Customer Success</p>
+      </div>
+      <div class="team-slide">
+        <div class="member-image">
+          <img src="https://scontent.fmnl3-1.fna.fbcdn.net/v/t39.30808-6/456326912_1259499378796217_9169069816291210368_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeE13Xe1UQHjwXtm7EazQbB2kxraQBB63kiTGtpAEHreSAgyifY6p3KlZB2RYg7n5Vumu6PTktlrZFhWmlCWCkm2&_nc_ohc=JbhoRH61_4QQ7kNvgElrLvw&_nc_oc=Adi2YAWUaB6fJC22XQpSP_OaEm48gWUiC38AyHG7N0BVI3JL3y3G2JF2gAdHqAcJLEI&_nc_zt=23&_nc_ht=scontent.fmnl3-1.fna&_nc_gid=Aq5OwIZJLwrg-DHn5d2WACr&oh=00_AYCTcLH5FlmffMBtFrbx3kqyBUre4advpHR-BadqIVC6iA&oe=67C602BF" alt="Mark Joshua">
+        </div>
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Specialized Support</p>
+      </div>
+      <div class="team-slide">
+        <div class="member-image">
+          <img src="https://scontent.fmnl3-1.fna.fbcdn.net/v/t39.30808-6/456326912_1259499378796217_9169069816291210368_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeE13Xe1UQHjwXtm7EazQbB2kxraQBB63kiTGtpAEHreSAgyifY6p3KlZB2RYg7n5Vumu6PTktlrZFhWmlCWCkm2&_nc_ohc=JbhoRH61_4QQ7kNvgElrLvw&_nc_oc=Adi2YAWUaB6fJC22XQpSP_OaEm48gWUiC38AyHG7N0BVI3JL3y3G2JF2gAdHqAcJLEI&_nc_zt=23&_nc_ht=scontent.fmnl3-1.fna&_nc_gid=Aq5OwIZJLwrg-DHn5d2WACr&oh=00_AYCTcLH5FlmffMBtFrbx3kqyBUre4advpHR-BadqIVC6iA&oe=67C602BF" alt="Mark Joshua">
+        </div>
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Payments Support</p>
+      </div>
+      <div class="team-slide">
+        <div class="member-image">
+          <img src="https://scontent.fmnl3-1.fna.fbcdn.net/v/t39.30808-6/456326912_1259499378796217_9169069816291210368_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeE13Xe1UQHjwXtm7EazQbB2kxraQBB63kiTGtpAEHreSAgyifY6p3KlZB2RYg7n5Vumu6PTktlrZFhWmlCWCkm2&_nc_ohc=JbhoRH61_4QQ7kNvgElrLvw&_nc_oc=Adi2YAWUaB6fJC22XQpSP_OaEm48gWUiC38AyHG7N0BVI3JL3y3G2JF2gAdHqAcJLEI&_nc_zt=23&_nc_ht=scontent.fmnl3-1.fna&_nc_gid=Aq5OwIZJLwrg-DHn5d2WACr&oh=00_AYCTcLH5FlmffMBtFrbx3kqyBUre4advpHR-BadqIVC6iA&oe=67C602BF" alt="Mark Joshua">
+        </div>
+        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+        <p>Customer Success Lead</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="action-section">
+    <h2>Action</h2>
+    <p>Transform your ideas into reality with our powerful workflow solutions. Create, collaborate, and achieve more together.</p>
+    <div class="action-controls">
+      <button class="action-control prev">‹</button>
+      <button class="action-control next">›</button>
+    </div>
+    <div class="action-carousel">
+      <div class="action-cards">
+        <div class="action-card">
+          <div class="action-card-header" style="background-color: #f44336;"></div>
+          <h3>Workflow Design</h3>
+          <p>Create efficient workflows that streamline your processes. Design custom workflows that adapt to your team's unique needs and objectives.</p>
+        </div>
+        <div class="action-card">
+          <div class="action-card-header" style="background-color: #2196f3;"></div>
+          <h3>Team Collaboration</h3>
+          <p>Foster seamless collaboration with real-time updates and shared workspaces. Keep everyone aligned and moving forward together.</p>
+        </div>
+        <div class="action-card">
+          <div class="action-card-header" style="background-color: #4caf50;"></div>
+          <h3>Project Tracking</h3>
+          <p>Monitor progress and milestones with intuitive visual tools. Stay on top of deadlines and ensure project success.</p>
+        </div>
+        <div class="action-card">
+          <div class="action-card-header" style="background-color: #ffeb3b;"></div>
+          <h3>Task Automation</h3>
+          <p>Automate repetitive tasks and focus on what matters. Let our smart tools handle the routine while you drive innovation.</p>
+        </div>
+        <div class="action-card">
+          <div class="action-card-header" style="background-color: #00bcd4;"></div>
+          <h3>Resource Management</h3>
+          <p>Optimize resource allocation and maximize productivity. Make data-driven decisions with comprehensive insights.</p>
+        </div>
+        <div class="action-card">
+          <div class="action-card-header" style="background-color: #e91e63;"></div>
+          <h3>Process Integration</h3>
+          <p>Seamlessly integrate with your existing tools and processes. Create a unified workflow that empowers your team.</p>
+        </div>
+      </div>
+    </div>
+    <p>Transform the way you work with our innovative workflow solutions. Start building your perfect workflow today.</p>
+    <button class="explore">Explore All Features</button>
+  </section>
+
+  <footer class="secondary py-8">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center space-x-2 mb-4 md:mb-0">
+          <i class="fas fa-cube text-xl primary"></i>
+          <span class="text-xl font-bold primary">Utilix</span>
+        </div>
+        <div class="flex space-x-6">
+          <a href="https://www.facebook.com/mark.starosa.18" target="_blank" class="hover:text-primary transition-colors">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://github.com/XZCUTE" target="_blank" class="hover:text-primary transition-colors">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="mailto:markstarosa838@gmail.com" target="_blank" class="hover:text-primary transition-colors">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+      <div class="mt-8 text-center opacity-80">
+        <p>© 2025 Utilix. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            const headerOffset = 80; // Account for fixed header height
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Initialize scroll progress indicator
+      const scrollProgress = document.querySelector('.scroll-progress');
+      const header = document.querySelector('header');
+      let ticking = false;
+      
+      // Update header and scroll progress on scroll
+      const updateScroll = () => {
+        // Update header background
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
         }
-      });
 
-
-      let isDragging = false;
-      let startX = 0;
-      let scrollLeft = 0;
-
-      teamCarousel.addEventListener('mousedown', (e) => {
-
-        isDragging = true;
-        startX = e.pageX - teamCarousel.offsetLeft;
-        scrollLeft = teamCarousel.scrollLeft;
-        teamCarousel.style.cursor = 'grabbing';
-      });
-
-      teamCarousel.addEventListener('mouseleave', () => {
-        isDragging = false;
-        teamCarousel.style.cursor = 'grab';
-      });
-
-      teamCarousel.addEventListener('mouseup', () => {
-        isDragging = false;
-        teamCarousel.style.cursor = 'grab';
-      });
-
-      teamCarousel.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - teamCarousel.offsetLeft;
-        const walk = (x - startX) * 1;
-        teamCarousel.scrollLeft = scrollLeft - walk;
-
-        // Infinite scroll logic
-        const scrollWidth = teamCarousel.scrollWidth;
-        const clientWidth = teamCarousel.clientWidth;
-        const scrollPos = teamCarousel.scrollLeft;
+        // Update scroll progress bar and tooltip
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (window.scrollY / windowHeight) * 100;
+        scrollProgress.style.width = `${scrolled}%`;
+        scrollProgress.setAttribute('data-progress', `${Math.round(scrolled)}%`);
         
-        if (scrollPos >= scrollWidth - clientWidth * 1.5) {
-          teamCarousel.scrollLeft = clientWidth * 0.5;
-        } else if (scrollPos <= clientWidth * 0.5) {
-          teamCarousel.scrollLeft = scrollWidth - clientWidth * 1.5;
+        ticking = false;
+      };
+
+      // Add scroll event listener with requestAnimationFrame
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateScroll);
+          ticking = true;
         }
       });
 
+      // Initialize scroll state
+      requestAnimationFrame(updateScroll);
 
-      teamCarousel.addEventListener('wheel', function(e) {
-        e.preventDefault();
-        teamCarousel.scrollLeft += e.deltaY;
-
-        // Infinite scroll logic
-        const scrollWidth = teamCarousel.scrollWidth;
-        const clientWidth = teamCarousel.clientWidth;
-        const scrollPos = teamCarousel.scrollLeft;
+      // Add click functionality to scroll progress bar
+      scrollProgress.addEventListener('click', (e) => {
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const clickPosition = e.offsetX / scrollProgress.offsetWidth;
+        const scrollTo = clickPosition * windowHeight;
         
-        if (scrollPos >= scrollWidth - clientWidth * 1.5) {
-          teamCarousel.scrollLeft = clientWidth * 0.5;
-        } else if (scrollPos <= clientWidth * 0.5) {
-          teamCarousel.scrollLeft = scrollWidth - clientWidth * 1.5;
-        }
+        window.scrollTo({
+          top: scrollTo,
+          behavior: 'smooth'
+        });
       });
 
+      // Initialize reveal animation observer
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            // Reset transition delay after animation completes
+            setTimeout(() => {
+              entry.target.style.transitionDelay = '0s';
+            }, parseFloat(entry.target.style.transitionDelay) * 1000 + 600);
+            // Unobserve after animation to improve performance
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px' // Trigger slightly before element comes into view
+      });
 
-      document.addEventListener('keydown', function(e) {
-        if (document.activeElement === teamCarousel) {
+      // Apply reveal animation to feature and service cards
+      document.querySelectorAll('.feature-card, .service-card').forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'all 0.6s ease-out';
+        // Add slight delay based on index for staggered animation
+        card.style.transitionDelay = `${index * 0.1}s`;
+        revealObserver.observe(card);
+      });
+
+      // Simple Slider Implementation
+      const slider = document.querySelector('.team-slider');
+      const slides = slider.querySelectorAll('.team-slide');
+      let currentIndex = 0;
+
+      function updateSlides() {
+        slides.forEach((slide, index) => {
+          slide.classList.remove('active', 'prev', 'next');
+          if (index === currentIndex) {
+            slide.classList.add('active');
+          } else if (index === (currentIndex - 1 + slides.length) % slides.length) {
+            slide.classList.add('prev');
+          } else if (index === (currentIndex + 1) % slides.length) {
+            slide.classList.add('next');
+          }
+        });
+      }
+
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlides();
+      }
+
+      // Auto-rotation every 2 seconds
+      let autoRotate = setInterval(nextSlide, 2000);
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+          clearInterval(autoRotate);
           if (e.key === 'ArrowLeft') {
-            teamCarousel.scrollLeft -= 100;
-          } else if (e.key === 'ArrowRight') {
-            teamCarousel.scrollLeft += 100;
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+          } else {
+            currentIndex = (currentIndex + 1) % slides.length;
           }
-
-          // Infinite scroll logic
-          const scrollWidth = teamCarousel.scrollWidth;
-          const clientWidth = teamCarousel.clientWidth;
-          const scrollPos = teamCarousel.scrollLeft;
-          
-          if (scrollPos >= scrollWidth - clientWidth * 1.5) {
-            teamCarousel.scrollLeft = clientWidth * 0.5;
-          } else if (scrollPos <= clientWidth * 0.5) {
-            teamCarousel.scrollLeft = scrollWidth - clientWidth * 1.5;
-          }
+          updateSlides();
+          autoRotate = setInterval(nextSlide, 2000);
         }
       });
 
+      // Initialize slider
+      updateSlides();
 
-      teamCarousel.addEventListener('mouseenter', function() {
-        teamCarousel.focus();
-        teamCarousel.style.cursor = 'grab';
-      });
+      // Action carousel setup
+      const actionCarousel = document.querySelector('.action-cards');
+      const actionPrev = document.querySelector('.action-control.prev');
+      const actionNext = document.querySelector('.action-control.next');
+      
+      if (actionCarousel && actionPrev && actionNext) {
+        const cardWidth = 350 + 32; // card width + gap
+        let currentPosition = 0;
 
-      teamCarousel.addEventListener('blur', function() {
-        teamCarousel.blur();
-        teamCarousel.style.cursor = 'default';
-      });
+        function updateCarouselPosition() {
+          actionCarousel.style.transform = `translateX(${currentPosition}px)`;
+        }
 
-      const trelloCarousel = document.querySelector('.trello-carousel');
-        const trelloPrev = document.querySelector('.trello-control.prev');
-        const trelloNext = document.querySelector('.trello-control.next');
+        actionPrev.addEventListener('click', () => {
+          currentPosition = Math.min(currentPosition + cardWidth, 0);
+          updateCarouselPosition();
+        });
 
-        trelloPrev.addEventListener('click', () => {
-          trelloCarousel.scrollLeft -= 350;
-      });
+        actionNext.addEventListener('click', () => {
+          const maxScroll = -(actionCarousel.scrollWidth - actionCarousel.parentElement.clientWidth);
+          currentPosition = Math.max(currentPosition - cardWidth, maxScroll);
+          updateCarouselPosition();
+        });
 
-        trelloNext.addEventListener('click', () => {
-          trelloCarousel.scrollLeft += 350;
-      });
-        trelloPrev.addEventListener('click', () => {
-          trelloCarousel.scrollLeft -= 350;
-      });
+        let isDragging = false;
+        let startX;
+        let startPosition;
 
-        trelloNext.addEventListener('click', () => {
-          trelloCarousel.scrollLeft += 350;
-      });
+        actionCarousel.addEventListener('mousedown', (e) => {
+          isDragging = true;
+          startX = e.pageX;
+          startPosition = currentPosition;
+          actionCarousel.style.cursor = 'grabbing';
+        });
 
-    </script>
-  </body>
-  </html>
+        window.addEventListener('mousemove', (e) => {
+          if (!isDragging) return;
+          e.preventDefault();
+          const diff = e.pageX - startX;
+          currentPosition = startPosition + diff;
+          updateCarouselPosition();
+        });
+
+        window.addEventListener('mouseup', () => {
+          if (!isDragging) return;
+          isDragging = false;
+          actionCarousel.style.cursor = 'grab';
+          // Snap to nearest card
+          currentPosition = Math.round(currentPosition / cardWidth) * cardWidth;
+          const maxScroll = -(actionCarousel.scrollWidth - actionCarousel.parentElement.clientWidth);
+          currentPosition = Math.max(Math.min(currentPosition, 0), maxScroll);
+          updateCarouselPosition();
+        });
+
+        // Add smooth scrolling styles
+        const actionStyle = document.createElement('style');
+        actionStyle.textContent = `
+          .action-cards {
+            transition: transform 0.3s ease-out;
+          }
+        `;
+        document.head.appendChild(actionStyle);
+      }
+    });
+  </script>
+</body>
+</html>
