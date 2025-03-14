@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Utilix</title>
+  <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="public/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png">
+  <link rel="manifest" href="public/site.webmanifest">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -80,6 +85,7 @@
       transform: translateY(-10px) scale(0.95);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
       pointer-events: none;
       transform-origin: top right;
@@ -98,6 +104,7 @@
     header {
       background-color: rgba(33, 33, 33, 0.95);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       color: #fff;
       padding: 1rem 0;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -548,6 +555,7 @@
       background: rgba(33, 33, 33, 0.8);
       border-radius: 20px;
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       animation: headerReveal 0.8s ease-out forwards;
@@ -760,6 +768,7 @@
       justify-content: center;
       font-size: 1.8rem;
       backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
 
     .action-control:hover {
@@ -832,6 +841,7 @@
       transition: all 0.3s ease;
       margin-top: 3rem;
       backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
 
     .action-section button.explore:hover {
@@ -843,6 +853,7 @@
     footer.secondary {
       background-color: rgba(33, 33, 33, 0.95);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       padding: 2rem 0;
     }
 
@@ -980,19 +991,19 @@
 
   <section id="features" class="features">
     <div class="feature-card feature-card-weather">
-      <a href="https://utilix-weatherapp.pages.dev/" target="_blank" class="no-link-style">
+      <a href="https://utilix-weatherapp.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
         <h3>Utilix Weather App</h3>
         <p>Stay ahead of the forecast with real-time updates, detailed radar maps, and personalized alerts that help you plan your day effortlessly.</p>
       </a>
     </div>
     <div class="feature-card feature-card-task">
-      <a href="https://utilix-taskmasterapp.pages.dev/" target="_blank" class="no-link-style">
+      <a href="https://utilix-taskmasterapp.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
         <h3>Utilix TaskMaster</h3>
         <p>Manage tasks, set reminders, and stay organized effortlessly with this all-in-one productivity assistant.</p>
       </a>
     </div>
     <div class="feature-card feature-card-map">
-      <a href="https://utilix-mapdestinationapp.pages.dev/" target="_blank" class="no-link-style">
+      <a href="https://utilix-mapdestinationapp.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
         <h3>Utilix Map App</h3>
         <p>Navigate with confidence using interactive maps, live traffic updates, and intuitive directions for smooth journeys every time.</p>
       </a>
@@ -1002,7 +1013,7 @@
       <p>Dive into a curated collection of engaging games that entertain, challenge, and keep you coming back for more fun.</p>
     </div>
     <div class="feature-card feature-card-learn">
-      <a href="https://html-lessons.pages.dev/" target="_blank" class="no-link-style">
+      <a href="https://html-lessons.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
         <h3>Utilix Learn Coding</h3>
         <p>Boost your tech skills with interactive lessons, hands-on projects, and real-world coding challenges designed for beginners and pros alike.</p>
       </a>
@@ -1012,13 +1023,13 @@
       <p>Unlock the power of artificial intelligence with smart tools that automate tasks, deliver actionable insights, and drive innovation.</p>
     </div>
     <div class="feature-card feature-card-cinema">
-      <a href="https://utilix-cinema.pages.dev/" target="_blank" class="no-link-style">
+      <a href="https://utilix-cinema.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
         <h3>Utilix Cinema</h3>
         <p>Your ultimate streaming destination. Enjoy unlimited movies and TV shows in HD quality with multiple subtitles, and personalized recommendations. New content added daily!</p>
       </a>
     </div>
     <div class="feature-card feature-card-anime">
-      <a href="https://utilix-anime.pages.dev/" target="_blank" class="no-link-style">
+      <a href="https://utilix-anime.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
         <h3>Utilix Anime</h3>
         <p>Your ultimate anime streaming destination. Watch your favorite anime series in high quality with multiple subtitles and a vast collection of titles updated regularly.</p>
       </a>
@@ -1162,13 +1173,13 @@
           <span class="text-xl font-bold primary">Utilix</span>
         </div>
         <div class="flex space-x-6">
-          <a href="https://www.facebook.com/mark.starosa.18" target="_blank" class="hover:text-primary transition-colors">
+          <a href="https://www.facebook.com/mark.starosa.18" target="_blank" rel="noopener" class="hover:text-primary transition-colors">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="https://github.com/XZCUTE" target="_blank" class="hover:text-primary transition-colors">
+          <a href="https://github.com/XZCUTE" target="_blank" rel="noopener" class="hover:text-primary transition-colors">
             <i class="fab fa-github"></i>
           </a>
-          <a href="mailto:markstarosa838@gmail.com" target="_blank" class="hover:text-primary transition-colors">
+          <a href="mailto:markstarosa838@gmail.com" target="_blank" rel="noopener" class="hover:text-primary transition-colors">
             <i class="fas fa-envelope"></i>
           </a>
         </div>
