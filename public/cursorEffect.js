@@ -33,18 +33,18 @@ document.addEventListener('DOMContentLoaded', function() {
     velocityY: 0
   };
   
-  // Update mouse position and calculate velocity
-  document.addEventListener('mousemove', function(e) {
-    settings.velocityX = e.clientX - settings.mouseX;
-    settings.velocityY = e.clientY - settings.mouseY;
+  // Helper function to update cursor/touch position and create particles
+  function updatePosition(x, y) {
+    settings.velocityX = x - settings.mouseX;
+    settings.velocityY = y - settings.mouseY;
     
     settings.lastMouseX = settings.mouseX;
     settings.lastMouseY = settings.mouseY;
     
-    settings.mouseX = e.clientX;
-    settings.mouseY = e.clientY;
+    settings.mouseX = x;
+    settings.mouseY = y;
     
-    // Create particles based on mouse speed
+    // Create particles based on movement speed
     const speed = Math.sqrt(
       settings.velocityX * settings.velocityX + 
       settings.velocityY * settings.velocityY
@@ -56,9 +56,38 @@ document.addEventListener('DOMContentLoaded', function() {
     for (let i = 0; i < particlesToCreate; i++) {
       createParticle();
     }
+  }
+  
+  // Update mouse position and calculate velocity
+  document.addEventListener('mousemove', function(e) {
+    updatePosition(e.clientX, e.clientY);
   });
   
-  // Create extra particles on click
+  // Handle touch events for mobile devices
+  document.addEventListener('touchmove', function(e) {
+    e.preventDefault(); // Prevent scrolling while creating effects
+    if (e.touches.length > 0) {
+      const touch = e.touches[0];
+      updatePosition(touch.clientX, touch.clientY);
+    }
+  }, { passive: false });
+  
+  document.addEventListener('touchstart', function(e) {
+    if (e.touches.length > 0) {
+      const touch = e.touches[0];
+      settings.mouseX = touch.clientX;
+      settings.mouseY = touch.clientY;
+      settings.lastMouseX = touch.clientX;
+      settings.lastMouseY = touch.clientY;
+      
+      // Create a few particles at touch start
+      for (let i = 0; i < 5; i++) {
+        createParticle(true);
+      }
+    }
+  });
+  
+  // Create extra particles on click/tap
   document.addEventListener('click', function(e) {
     settings.mouseX = e.clientX;
     settings.mouseY = e.clientY;
@@ -69,11 +98,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
+  // Also handle touchend to create burst effect
+  document.addEventListener('touchend', function(e) {
+    // Create a burst of particles at the last known position
+    for (let i = 0; i < 15; i++) {
+      createParticle(true);
+    }
+  });
+  
   function createParticle(isBurst = false) {
     // If we hit the particle limit, remove oldest
     if (settings.particles.length >= settings.maxParticles) {
       const oldestParticle = settings.particles.shift();
-      container.removeChild(oldestParticle.element);
+      if (oldestParticle && oldestParticle.element && oldestParticle.element.parentNode) {
+        container.removeChild(oldestParticle.element);
+      }
     }
     
     // Create the element
@@ -91,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const posX = settings.mouseX + (isBurst ? (Math.random() * 20 - 10) : 0);
     const posY = settings.mouseY + (isBurst ? (Math.random() * 20 - 10) : 0);
     
-    // Calculate direction based on mouse velocity
+    // Calculate direction based on mouse/touch velocity
     let directionX, directionY;
     
     if (isBurst) {
@@ -100,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
       directionX = Math.cos(angle) * (Math.random() * 3 + 2);
       directionY = Math.sin(angle) * (Math.random() * 3 + 2);
     } else {
-      // Follow mouse direction but with slight variation
+      // Follow direction but with slight variation
       directionX = -settings.velocityX * (0.3 + Math.random() * 0.2);
       directionY = -settings.velocityY * (0.3 + Math.random() * 0.2);
     }
