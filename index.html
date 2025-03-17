@@ -243,8 +243,31 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       position: relative;
-      overflow: hidden;
-      z-index: 1;
+    }
+    
+    /* Button link style to match button appearance */
+    .button {
+      display: inline-block;
+      background-color: transparent;
+      color: #fff;
+      padding: 1rem 2.5rem;
+      border: 2px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      text-decoration: none;
+    }
+    
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      color: #fff;
+      border-color: transparent;
+      background-image: linear-gradient(45deg, #3498db, #9b59b6);
     }
 
     .hero button::before {
@@ -2008,7 +2031,7 @@
     <div class="container">
     <h1 class="gradient-text">Utilix Simple Apps</h1>
     <p>A developer named Mark Joshua Kylee P. Sta. Rosa created this project to showcase his skills in web development. This project includes a variety of simple apps that demonstrate his ability to create functional and user-friendly applications.</p>
-    <button>Portfolio</button>
+    <a href="https://drive.google.com/file/d/1B16oBaktlDUVILSxRwrwwQjzzCdWw8Ui/view" target="_blank" rel="noopener" class="button">Resume</a>
     </div>
   </section>
 
