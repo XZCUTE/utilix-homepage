@@ -437,6 +437,44 @@
       background: url('https://i.pinimg.com/1200x/64/7e/92/647e92a94cc03fbb61681a795c941ce1.jpg') center/cover no-repeat;
     }
 
+    .feature-card-vemberlyn::after {
+      background: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+    .feature-card-chriselle::after {
+      background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+    .feature-card-roland::after {
+      background: url('https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+    .feature-card-thomie::after {
+      background: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+    .feature-card-dtoqs::after {
+      background: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+    .feature-card-promops::after {
+      background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+    .feature-card-chirp::after {
+      background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+    .feature-card-ccs::after {
+      background: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+    .feature-card-team::after {
+      background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+    .feature-card-picker::after {
+      background: url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+    .feature-card-excevera::after {
+      background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+
+    .feature-card-selectit::after {
+      background: url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+
     .feature-card h3, .feature-card p {
       position: relative;
       z-index: 2;
@@ -2007,6 +2045,764 @@
     } */
 
     .main-header { padding-top: 120px; }
+
+    /* --- Hero Section Upgrade --- */
+    .role-headline {
+      font-size: 1.5rem;
+      color: #b0b0b0;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      color: #ddd;
+      line-height: 1.6;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .tech-stack-chips {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      font-size: 2.2rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .tech-stack-chips i {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));
+    }
+
+    .tech-stack-chips i:hover {
+      color: #fff;
+      transform: translateY(-8px) scale(1.1);
+      filter: drop-shadow(0 0 15px rgba(52, 152, 219, 0.8));
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, #3498db, #9b59b6);
+      color: white;
+      box-shadow: 0 4px 20px rgba(52, 152, 219, 0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(155, 89, 182, 0.6);
+    }
+
+    .secondary-btn {
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+    }
+
+    .secondary-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .outline-btn {
+      background: transparent;
+      color: #aaa;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .outline-btn:hover {
+      border-color: #3498db;
+      color: #3498db;
+      transform: translateY(-4px);
+    }
+
+    /* --- Featured Projects Upgrade --- */
+    .feature-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(52, 152, 219, 0.2);
+      border-color: rgba(52, 152, 219, 0.3);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+      z-index: 1;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .feature-card:hover::before {
+      opacity: 0.6;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+      transform: translateZ(20px);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .feature-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, #fff, #ddd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover h3 {
+      background: linear-gradient(90deg, #3498db, #9b59b6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .impact-line {
+      font-size: 0.95rem;
+      color: #ccc;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: auto;
+    }
+
+    .tech-badges span {
+      font-size: 0.75rem;
+      background: rgba(0, 0, 0, 0.5);
+      color: #3498db;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid rgba(52, 152, 219, 0.3);
+      backdrop-filter: blur(4px);
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .feature-card:hover .tech-badges span {
+      background: rgba(52, 152, 219, 0.2);
+      color: #fff;
+      border-color: #3498db;
+      box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+    }
+
+    .app-icon {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 1.8rem;
+      color: rgba(255,255,255,0.7);
+      z-index: 2;
+      background: rgba(0,0,0,0.3);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .app-icon {
+      transform: scale(1.1) rotate(5deg);
+      color: #fff;
+      border-color: rgba(52, 152, 219, 0.5);
+      box-shadow: 0 0 15px rgba(52, 152, 219, 0.4);
+    }
+
+    /* --- Skills Section Upgrade --- */
+    .skill-card {
+      background: rgba(30, 30, 30, 0.4);
+      padding: 2.5rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      background: rgba(35, 35, 35, 0.6);
+      border-color: rgba(155, 89, 182, 0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .skill-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #3498db, #9b59b6);
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    .skill-card:hover::after {
+      opacity: 1;
+      box-shadow: 0 0 10px rgba(155, 89, 182, 0.5);
+    }
+
+    .skill-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+
+    .skill-card h3 i {
+      color: #3498db;
+      filter: drop-shadow(0 0 5px rgba(52, 152, 219, 0.5));
+    }
+
+    .skill-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      color: #ddd;
+      font-weight: 500;
+    }
+
+    .skill-progress {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #3498db, #9b59b6);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      100% { transform: translateX(100%); }
+    }
+
+    .tools-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+      padding: 0;
+    }
+
+    .tools-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: #ccc;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      padding: 0.5rem;
+      border-radius: 8px;
+    }
+
+    .tools-list li:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      transform: translateX(5px);
+    }
+
+    .tools-list li i {
+      color: #9b59b6;
+      font-size: 1.2rem;
+    }
+
+    /* --- Developer Profile Upgrade --- */
+    .developer-profile {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    .profile-card {
+      background: rgba(30, 30, 30, 0.5);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 24px;
+      padding: 3.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 4rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(52, 152, 219, 0.05), transparent 60%);
+      pointer-events: none;
+    }
+
+    .profile-image {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid rgba(52, 152, 219, 0.2);
+      flex-shrink: 0;
+      position: relative;
+      box-shadow: 0 0 30px rgba(52, 152, 219, 0.2);
+      transition: all 0.4s ease;
+    }
+
+    .profile-image:hover {
+      border-color: rgba(155, 89, 182, 0.5);
+      box-shadow: 0 0 40px rgba(155, 89, 182, 0.3);
+      transform: scale(1.02);
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-info {
+      text-align: left;
+      flex: 1;
+      position: relative;
+      z-index: 2;
+    }
+
+    .profile-info h3 {
+      font-size: 2.4rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, #fff, #ddd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .profile-role {
+      font-size: 1.2rem;
+      background: linear-gradient(90deg, #3498db, #9b59b6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.8rem;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .profile-bio {
+      color: #ccc;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .profile-stats {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.3rem;
+      text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+    }
+
+    .github-activity {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .contribution-graph {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .graph-label {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .graph-label::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      background: #3498db;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #3498db;
+    }
+
+    /* --- Contact Section Upgrade --- */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 4rem auto 0;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-8px);
+      border-color: rgba(52, 152, 219, 0.4);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    .contact-icon {
+      font-size: 2.5rem;
+      color: #3498db;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 0 5px rgba(52,152,219,0.3));
+    }
+
+    .contact-card:hover .contact-icon {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 15px rgba(52,152,219,0.6));
+      color: #fff;
+    }
+
+    .contact-card h3 {
+      color: #fff;
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .contact-card p {
+      color: #999;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .contact-card:hover p {
+      color: #ddd;
+    }
+
+    @media (max-width: 768px) {
+      .profile-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+        gap: 2rem;
+      }
+      
+      .profile-info {
+        text-align: center;
+      }
+      
+      .profile-stats {
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Developer Journey Styles */
+    .journey-timeline {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .journey-timeline::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      bottom: 20px;
+      left: 19px;
+      width: 2px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .journey-card {
+      background-color: rgba(33, 33, 33, 0.5);
+      border-radius: 16px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: visible;
+      transition: all 0.3s ease;
+      margin-bottom: 3rem;
+      margin-left: 2rem;
+    }
+
+    .journey-card::after {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: -42px;
+      width: 16px;
+      height: 16px;
+      background: #1a1a1a;
+      border: 2px solid #3498db;
+      border-radius: 50%;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .journey-card:hover::after {
+      background: #3498db;
+      box-shadow: 0 0 15px rgba(52, 152, 219, 0.6);
+      transform: scale(1.2);
+    }
+
+    .journey-card:hover {
+      transform: translateX(10px);
+      background-color: rgba(40, 40, 40, 0.8);
+      border-color: rgba(52, 152, 219, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Remove old before style */
+    .journey-card::before {
+      display: none;
+    }
+
+    .journey-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .journey-header h3 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin: 0;
+    }
+
+    .year-badge {
+      background: linear-gradient(45deg, #3498db, #9b59b6);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: white;
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    }
+
+    .journey-card p {
+      color: #ddd;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .journey-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .journey-tags span {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #b0b0b0;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .journey-card:hover .journey-tags span {
+      background-color: rgba(52, 152, 219, 0.15);
+      color: #fff;
+      border-color: rgba(52, 152, 219, 0.3);
+    }
+
+    .journey-footer {
+      font-style: italic;
+      color: #aaa;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+      margin-bottom: 0 !important;
+    }
+
+    .journey-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      padding: 0;
+    }
+
+    .journey-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.8rem;
+      color: #ddd;
+    }
+
+    .journey-list li::before {
+      content: '•';
+      color: #9b59b6;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .highlight-card {
+      background: linear-gradient(145deg, rgba(33, 33, 33, 0.9), rgba(45, 45, 55, 0.9));
+      border: 1px solid rgba(155, 89, 182, 0.3);
+    }
+
+    .role-badge {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 3px solid #3498db;
+      color: #fff;
+      font-weight: 500;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .journey-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .year-badge {
+        align-self: flex-start;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2020,7 +2816,8 @@
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#features">Apps</a></li>
-        <li><a href="#services">Our Services</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#skills">Skills</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -2029,134 +2826,549 @@
 
   <section id="home" class="hero">
     <div class="container">
-    <h1 class="gradient-text">Utilix Simple Apps</h1>
-    <p>A developer named Mark Joshua Kylee P. Sta. Rosa created this project to showcase his skills in web development. This project includes a variety of simple apps that demonstrate his ability to create functional and user-friendly applications.</p>
-    <a href="https://drive.google.com/file/d/1B16oBaktlDUVILSxRwrwwQjzzCdWw8Ui/view" target="_blank" rel="noopener" class="button">Resume</a>
+      <h1 class="gradient-text">Mark Joshua Kylee P. Sta. Rosa</h1>
+      <p class="role-headline">Full Stack Developer • System Builder • Interactive Designer</p>
+      <p class="hero-description">Building intelligent interfaces and scalable web systems. A developer focused on creating functional, user-friendly, and visually engaging applications.</p>
+      
+      <div class="tech-stack-chips">
+        <i class="fab fa-html5" title="HTML5"></i>
+        <i class="fab fa-css3-alt" title="CSS3"></i>
+        <i class="fab fa-js" title="JavaScript"></i>
+        <i class="fab fa-python" title="Python"></i>
+        <i class="fab fa-react" title="React"></i>
+        <i class="fas fa-database" title="Database"></i>
+      </div>
+
+      <div class="hero-buttons">
+        <a href="#features" class="button primary-btn">View Projects</a>
+        <a href="https://github.com/XZCUTE" target="_blank" rel="noopener" class="button secondary-btn"><i class="fab fa-github"></i> GitHub</a>
+        <a href="#contact" class="button secondary-btn">Contact</a>
+        <a href="https://drive.google.com/file/d/1B16oBaktlDUVILSxRwrwwQjzzCdWw8Ui/view" target="_blank" rel="noopener" class="button outline-btn">Resume</a>
+      </div>
     </div>
   </section>
 
   <section id="features" class="features">
     <div class="container">
       <div class="features-header">
-        <h2>Explore Our <span class="highlight">Apps</span></h2>
-        <p>Discover a collection of powerful tools designed to make your life easier</p>
+        <h2>Featured <span class="highlight">Projects</span></h2>
+        <p>A selection of my best work in systems, web applications, and interactive tools.</p>
       </div>
+      
       <div class="features-grid">
-    <div class="feature-card feature-card-weather">
-      <a href="https://utilix-weatherapp.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
-            <div class="app-icon"><i class="fas fa-cloud-sun"></i></div>
-            <div class="rain">
-              <i class="fas fa-tint" style="left: 10%; animation-delay: 0.2s;"></i>
-              <i class="fas fa-tint" style="left: 30%; animation-delay: 0.5s;"></i>
-              <i class="fas fa-tint" style="left: 50%; animation-delay: 0.1s;"></i>
-              <i class="fas fa-tint" style="left: 70%; animation-delay: 0.7s;"></i>
-              <i class="fas fa-tint" style="left: 90%; animation-delay: 0.3s;"></i>
+        <!-- 1. System: PromOPS -->
+        <div class="feature-card feature-card-promops">
+          <a href="https://promops.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-users-cog"></i></div>
+            <div class="card-content">
+              <h3>PromOPS</h3>
+              <p class="impact-line">Proctor & Operations Management System for efficient team coordination.</p>
+              <div class="tech-badges">
+                <span>System Design</span>
+                <span>Management</span>
+                <span>Web App</span>
+              </div>
             </div>
-        <h3>Utilix Weather App</h3>
-        <p>Stay ahead of the forecast with real-time updates, detailed radar maps, and personalized alerts that help you plan your day effortlessly.</p>
-      </a>
-    </div>
-    <div class="feature-card feature-card-task">
-      <a href="https://utilix-taskmasterapp.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+          </a>
+        </div>
+
+        <!-- 2. System: iDTOQS -->
+        <div class="feature-card feature-card-dtoqs">
+          <a href="https://dtsystem.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-file-medical"></i></div>
+            <div class="card-content">
+              <h3>ICCT Drug Testing</h3>
+              <p class="impact-line">Streamlined online queuing system for safer and faster medical processes.</p>
+              <div class="tech-badges">
+                <span>Queuing Logic</span>
+                <span>Database</span>
+                <span>UX/UI</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 3. System: TEAM JOSHUA -->
+        <div class="feature-card feature-card-team">
+          <a href="https://teammarkjoshua.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-users"></i></div>
+            <div class="card-content">
+              <h3>TEAM JOSHUA</h3>
+              <p class="impact-line">Secure agent management system for tracking activity and collaboration.</p>
+              <div class="tech-badges">
+                <span>Security</span>
+                <span>Agent Tracking</span>
+                <span>Dashboard</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 4. Platform: CCS AI WEEK -->
+        <div class="feature-card feature-card-ccs">
+          <a href="https://ccsevent.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-calendar-alt"></i></div>
+            <div class="card-content">
+              <h3>CCS AI WEEK 2026</h3>
+              <p class="impact-line">Official event platform for registration, scheduling, and innovation updates.</p>
+              <div class="tech-badges">
+                <span>Event Tech</span>
+                <span>Registration</span>
+                <span>Design</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 5. App: TaskMaster -->
+        <div class="feature-card feature-card-task">
+          <a href="https://utilix-taskmasterapp.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
             <div class="app-icon"><i class="fas fa-tasks"></i></div>
             <div class="checklist">
               <i class="fas fa-check-circle" style="animation-delay: 0.1s;"></i>
               <i class="fas fa-check-circle" style="animation-delay: 0.3s;"></i>
               <i class="fas fa-check-circle" style="animation-delay: 0.5s;"></i>
             </div>
-        <h3>Utilix TaskMaster</h3>
-        <p>Manage tasks, set reminders, and stay organized effortlessly with this all-in-one productivity assistant.</p>
-      </a>
-    </div>
-    <div class="feature-card feature-card-map">
-      <a href="https://utilix-mapdestinationapp.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
-            <div class="app-icon"><i class="fas fa-map-marked-alt"></i></div>
-        <h3>Utilix Map App</h3>
-        <p>Navigate with confidence using interactive maps, live traffic updates, and intuitive directions for smooth journeys every time.</p>
-      </a>
-    </div>
-    <div class="feature-card feature-card-games">
-      <a href="https://b111e48f.utilix-games.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
-          <div class="app-icon"><i class="fas fa-gamepad"></i></div>
-          <h3>Utilix Games</h3>
-          <p>Dive into a curated collection of engaging games that entertain, challenge, and keep you coming back for more fun.</p>
-      </a>
-    </div>
-    <div class="feature-card feature-card-learn">
-      <a href="https://html-lessons.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="card-content">
+              <h3>Utilix TaskMaster</h3>
+              <p class="impact-line">All-in-one productivity assistant for task management and organization.</p>
+              <div class="tech-badges">
+                <span>Productivity</span>
+                <span>Local Storage</span>
+                <span>JS Logic</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 6. App: Weather -->
+        <div class="feature-card feature-card-weather">
+          <a href="https://utilix-weatherapp.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-cloud-sun"></i></div>
+            <div class="rain">
+              <i class="fas fa-tint" style="left: 10%; animation-delay: 0.2s;"></i>
+              <i class="fas fa-tint" style="left: 30%; animation-delay: 0.5s;"></i>
+              <i class="fas fa-tint" style="left: 50%; animation-delay: 0.1s;"></i>
+            </div>
+            <div class="card-content">
+              <h3>Utilix Weather App</h3>
+              <p class="impact-line">Real-time forecast updates with detailed radar maps and alerts.</p>
+              <div class="tech-badges">
+                <span>API Integration</span>
+                <span>Geolocation</span>
+                <span>Data Viz</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 7. App: AI -->
+        <div class="feature-card feature-card-ai">
+          <a href="https://aster-ai.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-robot"></i></div>
+            <div class="card-content">
+              <h3>Utilix AI</h3>
+              <p class="impact-line">Smart tools that automate tasks and deliver actionable insights.</p>
+              <div class="tech-badges">
+                <span>Artificial Intelligence</span>
+                <span>Automation</span>
+                <span>Modern UI</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 8. Platform: Excevera -->
+        <div class="feature-card feature-card-excevera">
+          <a href="https://excevera.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-gem"></i></div>
+            <div class="card-content">
+              <h3>Excevera</h3>
+              <p class="impact-line">Innovative digital platform delivering excellence in web solutions.</p>
+              <div class="tech-badges">
+                <span>Web Solutions</span>
+                <span>Creative Design</span>
+                <span>Platform</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 9. App: Report Picker -->
+        <div class="feature-card feature-card-picker">
+          <a href="https://pickreport.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-list-check"></i></div>
+            <div class="card-content">
+              <h3>Report Topic Picker</h3>
+              <p class="impact-line">Interactive portal for students to select and lock reporting topics.</p>
+              <div class="tech-badges">
+                <span>Database</span>
+                <span>Interactive</span>
+                <span>Logic</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 10. Platform: CHIRP -->
+        <div class="feature-card feature-card-chirp">
+          <a href="https://chirp-cl3.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="card-content">
+              <h3>CHIRP</h3>
+              <p class="impact-line">Community platform for cyber enthusiasts to share security tips.</p>
+              <div class="tech-badges">
+                <span>Cybersecurity</span>
+                <span>Community</span>
+                <span>Web App</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 11. App: Games -->
+        <div class="feature-card feature-card-games">
+          <a href="https://b111e48f.utilix-games.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-gamepad"></i></div>
+            <div class="card-content">
+              <h3>Utilix Games</h3>
+              <p class="impact-line">Curated collection of engaging web-based games.</p>
+              <div class="tech-badges">
+                <span>Game Dev</span>
+                <span>Entertainment</span>
+                <span>Interactive</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 12. App: Learn Coding -->
+        <div class="feature-card feature-card-learn">
+          <a href="https://html-lessons.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
             <div class="app-icon"><i class="fas fa-graduation-cap"></i></div>
-        <h3>Utilix Learn Coding</h3>
-        <p>Boost your tech skills with interactive lessons, hands-on projects, and real-world coding challenges designed for beginners and pros alike.</p>
-      </a>
-    </div>
-    <div class="feature-card feature-card-ai">
-      <a href="https://aster-ai.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
-          <div class="app-icon"><i class="fas fa-robot"></i></div>
-          <h3>Utilix AI</h3>
-          <p>Unlock the power of artificial intelligence with smart tools that automate tasks, deliver actionable insights, and drive innovation.</p>
-      </a>
-    </div>
-    <div class="feature-card feature-card-cinema">
-      <a href="https://utilix-cinema.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="card-content">
+              <h3>Utilix Learn Coding</h3>
+              <p class="impact-line">Interactive coding lessons and challenges for beginners.</p>
+              <div class="tech-badges">
+                <span>Education</span>
+                <span>Interactive</span>
+                <span>Tutorials</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 13. App: Cinema -->
+        <div class="feature-card feature-card-cinema">
+          <a href="https://utilix-cinema.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
             <div class="app-icon"><i class="fas fa-film"></i></div>
-        <h3>Utilix Cinema</h3>
-            <p>Your ultimate streaming destination. Enjoy unlimited movies and TV shows in HD quality with multiple subtitles, and personalized recommendations.</p>
-      </a>
-    </div>
-    <div class="feature-card feature-card-anime">
-      <a href="https://utilix-anime.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="card-content">
+              <h3>Utilix Cinema</h3>
+              <p class="impact-line">Streaming destination for movies and TV shows.</p>
+              <div class="tech-badges">
+                <span>Streaming</span>
+                <span>Media</span>
+                <span>UI Design</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 14. App: Anime -->
+        <div class="feature-card feature-card-anime">
+          <a href="https://utilix-anime.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
             <div class="app-icon"><i class="fas fa-tv"></i></div>
-        <h3>Utilix Anime</h3>
-            <p>Your ultimate anime streaming destination. Watch your favorite anime series in high quality with multiple subtitles and a vast collection of titles.</p>
-      </a>
+            <div class="card-content">
+              <h3>Utilix Anime</h3>
+              <p class="impact-line">Anime streaming platform with vast collection.</p>
+              <div class="tech-badges">
+                <span>Streaming</span>
+                <span>Anime</span>
+                <span>Media</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 15. App: Map -->
+        <div class="feature-card feature-card-map">
+          <a href="https://utilix-mapdestinationapp.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-map-marked-alt"></i></div>
+            <div class="card-content">
+              <h3>Utilix Map App</h3>
+              <p class="impact-line">Interactive maps with live traffic updates and directions.</p>
+              <div class="tech-badges">
+                <span>Geolocation</span>
+                <span>Maps API</span>
+                <span>Navigation</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 16. Portfolio: Vemberlyn -->
+        <div class="feature-card feature-card-vemberlyn">
+          <a href="https://vemberly.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-user-circle"></i></div>
+            <div class="card-content">
+              <h3>Vemberlyn Portfolio</h3>
+              <p class="impact-line">Personal portfolio showcasing creative projects.</p>
+              <div class="tech-badges">
+                <span>Portfolio</span>
+                <span>Design</span>
+                <span>Personal</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 17. Portfolio: Chriselle -->
+        <div class="feature-card feature-card-chriselle">
+          <a href="https://chriselle.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-user-circle"></i></div>
+            <div class="card-content">
+              <h3>Chriselle Portfolio</h3>
+              <p class="impact-line">Showcase of development skills and aspirations.</p>
+              <div class="tech-badges">
+                <span>Portfolio</span>
+                <span>Web Dev</span>
+                <span>Personal</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 18. Portfolio: Roland -->
+        <div class="feature-card feature-card-roland">
+          <a href="https://rolandf.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-user-circle"></i></div>
+            <div class="card-content">
+              <h3>Roland Portfolio</h3>
+              <p class="impact-line">Professional milestones and development projects.</p>
+              <div class="tech-badges">
+                <span>Portfolio</span>
+                <span>Projects</span>
+                <span>Personal</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 19. Portfolio: Thomie -->
+        <div class="feature-card feature-card-thomie">
+          <a href="https://thomie.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-user-circle"></i></div>
+            <div class="card-content">
+              <h3>Thomie Portfolio</h3>
+              <p class="impact-line">Creative works and technical skills showcase.</p>
+              <div class="tech-badges">
+                <span>Portfolio</span>
+                <span>Creative</span>
+                <span>Personal</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 20. App: SelectIT -->
+        <div class="feature-card feature-card-selectit">
+          <a href="https://selectit.pages.dev/" target="_blank" rel="noopener" class="no-link-style">
+            <div class="app-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="card-content">
+              <h3>SelectIT</h3>
+              <p class="impact-line">Character selection platform for interactive experiences.</p>
+              <div class="tech-badges">
+                <span>Interactive</span>
+                <span>User Selection</span>
+                <span>Web App</span>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="services" class="services-section">
+  <section id="journey" class="services-section">
     <div class="container">
-      <h2 class="section-title">Our <span class="highlight">Services</span></h2>
-      <p class="section-description">Comprehensive solutions for your digital needs</p>
+      <h2 class="section-title">Developer <span class="highlight">Journey</span></h2>
+      <p class="section-description">My evolution from a learner to a system builder</p>
       
-    <div class="services-grid">
-        <!-- Creative Services Card -->
-        <div class="service-card">
-        <h3>Creative Services</h3>
-        <ul>
-          <li>Website Creation</li>
-          <li>App Development</li>
-          <li>Excel File Systems</li>
-          <li>Video & Image Editing</li>
-          <li>UI/UX Design</li>
-        </ul>
-          <button class="learn-more">Learn More</button>
+      <div class="journey-timeline">
+        <!-- Early Stage -->
+        <div class="journey-card">
+          <div class="journey-header">
+            <h3>🌱 Early Stage — Learning the Core</h3>
+            <span class="year-badge">2021 – 2022</span>
+          </div>
+          <p>My journey in software development started with curiosity about how systems and applications work. I began exploring programming fundamentals, experimenting with simple scripts, and understanding basic logic, structure, and debugging.</p>
+          <div class="journey-tags">
+            <span>Programming logic</span>
+            <span>Basic software structure</span>
+            <span>Debugging and testing mindset</span>
+          </div>
+          <p class="journey-footer">This phase shaped my analytical thinking and problem-solving approach.</p>
+        </div>
+
+        <!-- Exploration Stage -->
+        <div class="journey-card">
+          <div class="journey-header">
+            <h3>🔍 Exploration Stage — Discovering Development Paths</h3>
+            <span class="year-badge">2023</span>
+          </div>
+          <p>As I progressed, I explored different areas of technology including web development, system design, and interactive programming. I started building structured projects and learned how real applications are organized.</p>
+          <div class="journey-tags">
+            <span>Web development fundamentals</span>
+            <span>Logical thinking</span>
+            <span>System-based programming</span>
+          </div>
+          <p class="journey-footer">This stage helped me transition from learner to builder.</p>
+        </div>
+
+        <!-- Growth Stage -->
+        <div class="journey-card">
+          <div class="journey-header">
+            <h3>💻 Growth Stage — Building Real Systems</h3>
+            <span class="year-badge">2024</span>
+          </div>
+          <p>In this phase, I began working on more meaningful and functional projects. My focus shifted toward writing structured code and building complete applications.</p>
+          <div class="journey-tags">
+            <span>Web applications</span>
+            <span>Code structure</span>
+            <span>Logic-driven programming</span>
+            <span>Complex projects</span>
+          </div>
+          <p class="journey-footer">This year became the technical foundation for my major development growth.</p>
+        </div>
+
+        <!-- Breakthrough Stage -->
+        <div class="journey-card highlight-card">
+          <div class="journey-header">
+            <h3>🔥 Breakthrough Stage — High Development Activity</h3>
+            <span class="year-badge">2025</span>
+          </div>
+          <p>This was my most productive and transformative year, reflected by strong GitHub contribution activity and numerous repositories.</p>
+          <ul class="journey-list">
+            <li>Built multiple system-based and application projects</li>
+            <li>Worked on Student Data Management System</li>
+            <li>Developed TaskMaster App, Weather App, and productivity tools</li>
+            <li>Created ProBOT — Python Virtual Assistant</li>
+            <li>Built interactive and logic-driven applications</li>
+          </ul>
+          <p class="journey-footer">During this phase, I evolved into a full project builder capable of designing and implementing complete systems.</p>
+        </div>
+
+        <!-- Advanced Builder Stage -->
+        <div class="journey-card future-card">
+          <div class="journey-header">
+            <h3>🎮 Advanced Builder Stage — Developer Identity</h3>
+            <span class="year-badge">2026 – Present</span>
+          </div>
+          <p>Currently, I am focused on more advanced, creative, and system-level development.</p>
+          <div class="journey-content">
+            <h4>Active work includes:</h4>
+            <ul class="journey-list">
+              <li>Developing a side-scrolling interactive web project (Construct 3)</li>
+              <li>Large world system (16000x1080) with custom camera and scrolling logic</li>
+              <li>Building interactive applications and system tools</li>
+              <li>Designing complete software solutions from concept to implementation</li>
+            </ul>
+          </div>
+          <div class="role-badge">
+            Software Developer | System Builder | Web Developer | Game Developer
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <section id="skills" class="services-section" style="background-color: #1a1a1a;">
+    <div class="container">
+      <h2 class="section-title">Technical <span class="highlight">Skills</span></h2>
+      <p class="section-description">My technical toolkit and areas of expertise</p>
+      
+      <div class="services-grid">
+        <!-- Frontend -->
+        <div class="service-card skill-card">
+          <h3><i class="fas fa-code"></i> Frontend</h3>
+          <div class="skill-bars">
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>HTML & CSS</span>
+                <span>95%</span>
+              </div>
+              <div class="skill-progress"><div class="progress-bar" style="width: 95%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>JavaScript</span>
+                <span>90%</span>
+              </div>
+              <div class="skill-progress"><div class="progress-bar" style="width: 90%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>React/Frameworks</span>
+                <span>85%</span>
+              </div>
+              <div class="skill-progress"><div class="progress-bar" style="width: 85%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>UI Logic & Animation</span>
+                <span>92%</span>
+              </div>
+              <div class="skill-progress"><div class="progress-bar" style="width: 92%"></div></div>
+            </div>
+          </div>
+        </div>
         
-        <!-- Data & Tech Card -->
-        <div class="service-card">
-        <h3>Data & Tech</h3>
-        <ul>
-          <li>Presentation Design</li>
-          <li>Data Analysis & Reporting</li>
-          <li>Data Collection & Validation</li>
-          <li>Automation & Custom Scripts</li>
-          <li>Database Management</li>
-        </ul>
-          <button class="learn-more">Learn More</button>
-      </div>
+        <!-- Development -->
+        <div class="service-card skill-card">
+          <h3><i class="fas fa-server"></i> Development</h3>
+          <div class="skill-bars">
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>Python</span>
+                <span>88%</span>
+              </div>
+              <div class="skill-progress"><div class="progress-bar" style="width: 88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>System Design</span>
+                <span>85%</span>
+              </div>
+              <div class="skill-progress"><div class="progress-bar" style="width: 85%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>Data Structures</span>
+                <span>80%</span>
+              </div>
+              <div class="skill-progress"><div class="progress-bar" style="width: 80%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>APIs & Backend</span>
+                <span>82%</span>
+              </div>
+              <div class="skill-progress"><div class="progress-bar" style="width: 82%"></div></div>
+            </div>
+          </div>
+        </div>
         
-        <!-- Advanced Solutions Card -->
-        <div class="service-card">
-        <h3>Advanced Solutions</h3>
-        <ul>
-          <li>Business Intelligence & Dashboards</li>
-          <li>Translation Services</li>
-          <li>Remote Support & Computer Fix</li>
-          <li>Cloud Solutions</li>
-          <li>Security Consulting</li>
-        </ul>
-          <button class="learn-more">Learn More</button>
+        <!-- Tools -->
+        <div class="service-card skill-card">
+          <h3><i class="fas fa-tools"></i> Tools</h3>
+          <ul class="tools-list">
+            <li><i class="fab fa-git-alt"></i> Git & GitHub</li>
+            <li><i class="fas fa-terminal"></i> VS Code</li>
+            <li><i class="fas fa-cubes"></i> Construct 3</li>
+            <li><i class="fab fa-figma"></i> Figma</li>
+            <li><i class="fas fa-bug"></i> DevTools</li>
+            <li><i class="fas fa-network-wired"></i> Networking</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -2164,52 +3376,44 @@
 
   <section id="about" class="team">
     <div class="container">
-      <h2>Meet <span class="highlight">Our</span> Team</h2>
-      <p>Our philosophy is simple: hire great people and give them the resources and support to do their best work.</p>
-    </div>
-    <div class="team-slider">
-      <div class="team-slide active">
-        <div class="member-image">
-          <img src="https://i.pinimg.com/1200x/35/10/1c/35101c50d83bbe1744f4214168c15875.jpg" alt="Mark Joshua">
+      <h2>About <span class="highlight">Me</span></h2>
+      <p class="section-description">Developer Profile & Background</p>
+      
+      <div class="developer-profile">
+        <div class="profile-card">
+          <div class="profile-image">
+            <img src="https://i.pinimg.com/1200x/35/10/1c/35101c50d83bbe1744f4214168c15875.jpg" alt="Mark Joshua">
+          </div>
+          <div class="profile-info">
+            <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
+            <p class="profile-role">Full Stack Developer & System Builder</p>
+            <p class="profile-bio">
+              I am a passionate developer dedicated to building efficient, scalable, and user-centric applications. With a strong foundation in both frontend interfaces and backend system logic, I create solutions that solve real-world problems. My journey involves continuous learning and applying modern technologies to craft seamless digital experiences.
+            </p>
+            
+            <div class="profile-stats">
+              <div class="stat-item">
+                <span class="stat-number" id="github-repos">20+</span>
+                <span class="stat-label">Projects</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">3+</span>
+                <span class="stat-label">Years Exp</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="github-followers">500+</span>
+                <span class="stat-label">Followers</span>
+              </div>
+            </div>
+            
+            <div class="github-activity">
+              <p class="graph-label">GitHub Contributions</p>
+              <div class="contribution-graph-container">
+                 <img src="https://ghchart.rshah.org/3498db/XZCUTE" alt="XZCUTE's Github chart" style="width: 100%; height: auto; border-radius: 8px;" />
+              </div>
+            </div>
+          </div>
         </div>
-        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-        <p>Payment Gateway Support</p>
-      </div>
-      <div class="team-slide">
-        <div class="member-image">
-          <img src="https://i.pinimg.com/1200x/35/10/1c/35101c50d83bbe1744f4214168c15875.jpg" alt="Mark Joshua">
-        </div>
-        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-        <p>VP of Customer Success</p>
-      </div>
-      <div class="team-slide">
-        <div class="member-image">
-          <img src="https://i.pinimg.com/1200x/35/10/1c/35101c50d83bbe1744f4214168c15875.jpg" alt="Mark Joshua">
-        </div>
-        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-        <p>Specialized Support</p>
-      </div>
-      <div class="team-slide">
-        <div class="member-image">
-          <img src="https://i.pinimg.com/1200x/35/10/1c/35101c50d83bbe1744f4214168c15875.jpg" alt="Mark Joshua">
-        </div>
-        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-        <p>Payments Support</p>
-      </div>
-      <div class="team-slide">
-        <div class="member-image">
-          <img src="https://i.pinimg.com/1200x/35/10/1c/35101c50d83bbe1744f4214168c15875.jpg" alt="Mark Joshua">
-        </div>
-        <h3>Mark Joshua Kylee P. Sta. Rosa</h3>
-        <p>Customer Success Lead</p>
-        </div>
-      </div>
-      <div class="team-nav">
-        <div class="team-nav-dot active"></div>
-        <div class="team-nav-dot"></div>
-        <div class="team-nav-dot"></div>
-        <div class="team-nav-dot"></div>
-        <div class="team-nav-dot"></div>
       </div>
     </div>
   </section>
@@ -2217,56 +3421,39 @@
   <section class="action-section">
     <div class="container">
       <div class="section-header">
-        <h2>Take <span class="highlight">Action</span></h2>
-    <p>Transform your ideas into reality with our powerful workflow solutions. Create, collaborate, and achieve more together.</p>
+        <h2>Let's <span class="highlight">Collaborate</span></h2>
+        <p>Ready to build something amazing? I'm open for projects and opportunities.</p>
       </div>
-    <div class="action-controls">
-      <button class="action-control prev">‹</button>
-      <button class="action-control next">›</button>
-    </div>
-    <div class="action-carousel">
-      <div class="action-cards">
-        <div class="action-card">
-          <div class="action-card-header" style="background-color: #f44336;"></div>
-            <div class="action-card-icon"><i class="fas fa-sitemap"></i></div>
-          <h3>Workflow Design</h3>
-          <p>Create efficient workflows that streamline your processes. Design custom workflows that adapt to your team's unique needs and objectives.</p>
-        </div>
-        <div class="action-card">
-          <div class="action-card-header" style="background-color: #2196f3;"></div>
-            <div class="action-card-icon"><i class="fas fa-users"></i></div>
-          <h3>Team Collaboration</h3>
-          <p>Foster seamless collaboration with real-time updates and shared workspaces. Keep everyone aligned and moving forward together.</p>
-        </div>
-        <div class="action-card">
-          <div class="action-card-header" style="background-color: #4caf50;"></div>
-            <div class="action-card-icon"><i class="fas fa-chart-line"></i></div>
-          <h3>Project Tracking</h3>
-          <p>Monitor progress and milestones with intuitive visual tools. Stay on top of deadlines and ensure project success.</p>
-        </div>
-        <div class="action-card">
-          <div class="action-card-header" style="background-color: #ffeb3b;"></div>
-            <div class="action-card-icon"><i class="fas fa-robot"></i></div>
-          <h3>Task Automation</h3>
-          <p>Automate repetitive tasks and focus on what matters. Let our smart tools handle the routine while you drive innovation.</p>
-        </div>
-        <div class="action-card">
-          <div class="action-card-header" style="background-color: #00bcd4;"></div>
-            <div class="action-card-icon"><i class="fas fa-cubes"></i></div>
-          <h3>Resource Management</h3>
-          <p>Optimize resource allocation and maximize productivity. Make data-driven decisions with comprehensive insights.</p>
-        </div>
-        <div class="action-card">
-          <div class="action-card-header" style="background-color: #e91e63;"></div>
-            <div class="action-card-icon"><i class="fas fa-plug"></i></div>
-          <h3>Process Integration</h3>
-          <p>Seamlessly integrate with your existing tools and processes. Create a unified workflow that empowers your team.</p>
-        </div>
+    
+      <div class="contact-wrapper">
+        <a href="mailto:markstarosa838@gmail.com" class="contact-card">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <h3>Email Me</h3>
+          <p>markstarosa838@gmail.com</p>
+        </a>
+        
+        <a href="https://github.com/XZCUTE" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon"><i class="fab fa-github"></i></div>
+          <h3>GitHub</h3>
+          <p>Check out my code</p>
+        </a>
+        
+        <a href="https://www.linkedin.com/in/MJKPS" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+          <h3>LinkedIn</h3>
+          <p>Connect professionally</p>
+        </a>
+        
+        <a href="https://www.upwork.com/freelancers/~014ec704166f1ab71b?mp_source=share" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon"><img src="https://img.icons8.com/?size=50&id=fF39hkEhFlir&format=png" alt="Upwork" style="width: 30px; height: 30px; filter: brightness(0) invert(1);"></div>
+          <h3>Upwork</h3>
+          <p>Hire me for freelance</p>
+        </a>
       </div>
-        <div class="hint-arrows"><i class="fas fa-arrows-alt-h"></i> Drag to explore more</div>
-    </div>
-    <p>Transform the way you work with our innovative workflow solutions. Start building your perfect workflow today.</p>
-    <button class="explore">Explore All Features</button>
+      
+      <div style="margin-top: 3rem;">
+        <a href="mailto:markstarosa838@gmail.com" class="button primary-btn">Start a Conversation</a>
+      </div>
     </div>
   </section>
 
@@ -2355,6 +3542,21 @@
       
       // Smoke effect code removed
       
+      // GitHub API Integration
+      fetch("https://api.github.com/users/XZCUTE")
+        .then(res => res.json())
+        .then(data => {
+          if (data.public_repos) {
+            document.getElementById("github-repos").textContent = data.public_repos + "+";
+          }
+          if (data.followers) {
+            document.getElementById("github-followers").textContent = data.followers + "+";
+          }
+          // Optional: Update profile image if needed
+          // document.querySelector(".profile-image img").src = data.avatar_url;
+        })
+        .catch(err => console.error("GitHub API Error:", err));
+
       // Use requestAnimationFrame for cursor movement
       let cursorX = 0;
       let cursorY = 0;
